@@ -17,7 +17,7 @@ dispatch({type: "START_GAME", payload: category})
   return (
     <div id='category'>
         <h2>Escolha uma categoria</h2>
-        <p>As perguntas serão referentes a uma das linguagens abaixo:</p>
+        <p>As perguntas serão referentes a categoria escolhida abaixo:</p>
         <div>{quizState.questions.map((question) => (
 <button onClick={() => chooseCategoryAndReorderQuestions(question.category)} key={question.category}>{question.category}</button>
         )
