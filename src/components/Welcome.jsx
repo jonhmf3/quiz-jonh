@@ -19,7 +19,7 @@ const Welcome = () => {
 
   return (
     <div id="welcome">
-        <h2>Seja bem-vindo</h2>
+        <h2>Seja bem-vindo ao Quiz do Jonh!</h2>
         
         <div style={{ margin: "20px 0", display: "flex", flexDirection: "column", gap: "10px", alignItems: "center" }}>
           <label htmlFor="player-name" style={{ fontWeight: "bold", fontSize: "14px" }}>Como quer ser chamado no ranking?</label>
