@@ -28,7 +28,9 @@ const GameOver = () => {
           }
         })
         const data = await response.json()
-        setLeaders(data.ranking || [])
+       // setLeaders(data.ranking || [])
+        const rankingOrdenado = (data.ranking || []).sort((a, b) => b.score - a.score);
+setLeaders(rankingOrdenado);
       } catch (error) {
         console.log("Erro ao carregar ranking:", error)
       }
