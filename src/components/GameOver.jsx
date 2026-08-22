@@ -12,9 +12,22 @@ const GameOver = () => {
   const [quizState, dispatch] = useContext(QuizContext)
   const [leaders, setLeaders] = useState([])
 
+  // 🏷️ 1. Identifica qual categoria foi jogada nesta partida para saber onde salvar/buscar
+  const categoriaJogada = quizState.questions[0]?.category || "Futebol";
+
+  // 🗄️ 2. Mapeia o nome da categoria para a chave exata do banco de dados na nuvem
+  const obterChaveBanco = (categoria) => {
+    if (categoria.includes("Rebelde") || categoria.includes("RBD")) return "rankingRBD";
+    if (categoria.includes("Bíblia") || categoria.includes("Biblia")) return "rankingBiblia";
+    return "rankingFutebol"; // Padrão
+  };
+
+  const chaveBancoAtual = obterChaveBanco(categoriaJogada);
+
   useEffect(() => {
     const processRanking = async () => {
       try {
+        // 3. Faz o GET para buscar o objeto completo com todos os rankings da nuvem
         const responseGet = await fetch(API_URL, {
           method: "GET",
           headers: {
@@ -22,39 +35,51 @@ const GameOver = () => {
             "X-Bin-Meta": "false"
           }
         })
-        const data = await responseGet.json()
-        const listaAtual = data.ranking || []
+        const dadosCompletosDoBanco = await responseGet.json()
 
+        // 4. Captura apenas a lista específica do tema jogado (se não existir nada ainda, começa um array vazio)
+        const listaDesteTema = dadosCompletosDoBanco[chaveBancoAtual] || [];
+
+        // 5. Prepara os dados do jogador atual e calcula a pontuação (15 perguntas * 10 = 150 pts max)
         const nomeDoJogador = quizState.userName?.trim() || "Jogador Anônimo";
         const pontuacaoAtual = quizState.score * 10;
 
-        const novaListaComNovoJogador = [...listaAtual, { name: nomeDoJogador, score: pontuacaoAtual }];
+        // 6. Monta a nova lista adicionando o novo recordista
+        const novaListaComNovoJogador = [...listaDesteTema, { name: nomeDoJogador, score: pontuacaoAtual }];
+        
+        // 7. Ordena colocando as maiores pontuações no topo
         const listaOrdenada = novaListaComNovoJogador.sort((a, b) => b.score - a.score);
 
+        // 8. 🚨 Atualiza o objeto geral preservando as listas das OUTRAS categorias que não foram jogadas agora
+        const novoObjetoParaEnviar = {
+          ...dadosCompletosDoBanco, // Mantém o que já tinha dos outros temas
+          [chaveBancoAtual]: listaOrdenada // Atualiza APENAS a lista do tema atual
+        };
+
+        // 9. Faz o PUT para atualizar o banco de dados na nuvem com a nova estrutura separada
         const responsePut = await fetch(API_URL, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
             "X-Master-Key": MASTER_KEY
           },
-          body: JSON.stringify({
-            ranking: listaOrdenada
-          })
+          body: JSON.stringify(novoObjetoParaEnviar)
         })
 
         if (!responsePut.ok) {
           throw new Error("Erro na sincronização.")
         }
 
+        // 10. Atualiza a tela exibindo apenas o Top Líderes do tema selecionado
         setLeaders(listaOrdenada)
 
       } catch (error) {
-        console.error("Erro no processamento do ranking:", error)
+        console.error("Erro no processamento do ranking por categoria:", error)
       }
     }
     
     processRanking()
-  }, [quizState.score, quizState.userName])
+  }, [quizState.score, quizState.userName, chaveBancoAtual])
 
   return (
     <div id='gameover'>
@@ -67,8 +92,10 @@ const GameOver = () => {
           <p style={{ color: '#00ff7f', fontWeight: 'bold', fontSize: '14px', margin: 0 }}>✓ Sua pontuação foi salva automaticamente no ranking!</p>
         </div>
 
+        {/* 🏆 LISTA VISUAL DO RANKING ESPECÍFICO DA CATEGORIA */}
         <div className="ranking-list" style={{ margin: '20px 0', padding: '15px', backgroundColor: '#1c1a27', borderRadius: '8px' }}>
-          <h3 style={{ color: '#8435de', marginBottom: '15px' }}>🏆 Top Jogadores</h3>
+          {/* ✨ O título da lista agora mostra o tema jogado dinamicamente */}
+          <h3 style={{ color: '#8435de', marginBottom: '15px' }}>🏆 Top Jogadores: {categoriaJogada}</h3>
           {leaders.length === 0 ? (
             <p style={{ fontSize: '14px' }}>Atualizando ranking na nuvem...</p>
           ) : (
