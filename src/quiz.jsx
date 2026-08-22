@@ -71,7 +71,7 @@ console.log(state, action)
             return {
                 ...state,
                 currentQuestion: nextQuestion,
-                gameStage: endGame ? STAGES[3] : state.gameStage,
+                gameStage: endGame ? STAGES[15] : state.gameStage,
                 answerSelected: false,
                 help: false
             }
