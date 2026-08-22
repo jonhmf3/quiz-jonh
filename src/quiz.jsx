@@ -35,26 +35,45 @@ console.log(state, action)
                 gameStage: STAGES[1],
             }
 
-        case "START_GAME":
-            let quizQuestions = null;
+              case "START_GAME":
+            let todasAsPerguntasDaCategoria = [];
 
-            // Busca a categoria correta dentro do seu array de dados
+            // 1. Busca a categoria selecionada pelo jogador
             state.questions.forEach((question) => {
                 if(question.category === action.payload){
-                    // ✨ Garante que estamos pegando a lista COMPLETA de perguntas da categoria
-                    quizQuestions = [...question.questions]; 
+                    todasAsPerguntasDaCategoria = [...question.questions]; 
                 }
-            })
+            });
 
-            // 🚀 MUDANÇA IMPORTANTE: Reordena a lista completa DEPOIS de carregar todas as perguntas
-            const reorderedQuestions = quizQuestions.sort(() => Math.random() - 0.5);
+            // 2. Separa as perguntas em gavetas por dificuldade
+            const faceis = todasAsPerguntasDaCategoria.filter(q => q.difficulty === "facil");
+            const medias = todasAsPerguntasDaCategoria.filter(q => q.difficulty === "media");
+            const dificeis = todasAsPerguntasDaCategoria.filter(q => q.difficulty === "dificil");
+
+            // 3. Embaralha cada gaveta de forma independente
+            const faceisEmbaralhadas = faceis.sort(() => Math.random() - 0.5);
+            const mediasEmbaralhadas = medias.sort(() => Math.random() - 0.5);
+            const dificeisEmbaralhadas = dificeis.sort(() => Math.random() - 0.5);
+
+            // 4. ✂️ Pega exatamente 5 de cada nível (totalizando 15 perguntas no jogo)
+            const selecionadasFaceis = faceisEmbaralhadas.slice(0, 5);
+            const selecionadasMedias = mediasEmbaralhadas.slice(0, 5);
+            const selecionadasDificeis = dificeisEmbaralhadas.slice(0, 5);
+
+            // 5. 🤝 Junta todas na ordem correta da partida: primeiro as fáceis, depois médias, depois difíceis
+            const filaFinalDoJogo = [
+                ...selecionadasFaceis,
+                ...selecionadasMedias,
+                ...selecionadasDificeis
+            ];
 
             return {
                 ...state,
-                questions: reorderedQuestions, // Salva todas as perguntas embaralhadas
-                currentQuestion: 0, // Começa sempre na primeira (índice 0)
-                gameStage: STAGES[2],
+                questions: filaFinalDoJogo, // O jogo agora terá exatamente 15 perguntas escalonadas!
+                currentQuestion: 0,
+                gameStage: STAGES,
             }
+
 
        
 
