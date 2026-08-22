@@ -184,6 +184,7 @@ const data = [
   }
     ],
   },
+
   {
     category: "Novela Rebelde (RBD)",
     questions: [
@@ -236,7 +237,7 @@ const data = [
         //tip: "",
       },
       {
-        question: "De quem Mía Colucci tinha ciúmes e chamava de "gatinho de sarjeta"?",
+        question: 'De quem Mía Colucci tinha ciúmes e chamava de  "gatinho de sarjeta"?',
         options: ["Diego","Giovanni","Miguel ","Gastão"],
         answer: "Miguel ",
        // tip: "",
@@ -266,9 +267,10 @@ const data = [
   
   {
     category: "Bíblia",
-    [
-    {
-    question: "De acordo com o livro de Gênesis, qual é o primeiro livro oficial da Bíblia Sagrada?",
+    questions: [
+      {
+    question:
+       "De acordo com o livro de Gênesis, qual é o primeiro livro oficial da Bíblia Sagrada?",
     options: ["Êxodo", "Apocalipse", "Salmos", "Gênesis"],
     answer: "Gênesis",
     tip: "O nome do livro significa 'origem' ou 'princípio' e narra a criação do mundo.",
@@ -447,7 +449,9 @@ const data = [
     answer: "Obadias",
     tip: "Este livro traz uma profecia curta focada no julgamento da nação de Edom.",
   },
-    ],
+],
+
+
   },
 ];
 
