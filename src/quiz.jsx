@@ -38,42 +38,42 @@ console.log(state, action)
         case "START_GAME":
             let quizQuestions = null;
 
+            // Busca a categoria correta dentro do seu array de dados
             state.questions.forEach((question) => {
                 if(question.category === action.payload){
-                    quizQuestions = question.questions;
+                    // ✨ Garante que estamos pegando a lista COMPLETA de perguntas da categoria
+                    quizQuestions = [...question.questions]; 
                 }
             })
 
+            // 🚀 MUDANÇA IMPORTANTE: Reordena a lista completa DEPOIS de carregar todas as perguntas
+            const reorderedQuestions = quizQuestions.sort(() => Math.random() - 0.5);
+
             return {
                 ...state,
-                questions: quizQuestions,
+                questions: reorderedQuestions, // Salva todas as perguntas embaralhadas
+                currentQuestion: 0, // Começa sempre na primeira (índice 0)
                 gameStage: STAGES[2],
             }
 
-        case "REORDER_QUESTIONS":
-            const reorderedQuestions = state.questions.sort(() => {
-                return Math.random() - 0.5;
-            })
-            
-            return {
-                ...state,
-                questions: reorderedQuestions
-            }
+       
 
-        case "CHANGE_QUESTION":
+             case "CHANGE_QUESTION":
             const nextQuestion = state.currentQuestion + 1;
-            let endGame = false
+            let endGame = false;
 
-            if(!state.questions[nextQuestion]){
-                endGame = true
+            // ✨ Verifica dinamicamente se a próxima posição realmente NÃO existe na sua lista completa
+            if (nextQuestion >= state.questions.length) {
+                endGame = true;
             }
 
-            return {
+           return {
                 ...state,
                 currentQuestion: nextQuestion,
-                gameStage: endGame ? STAGES[15] : state.gameStage,
+                gameStage: endGame ? STAGES[3] : state.gameStage,
                 answerSelected: false,
-                help: false
+                help: false,
+                optionToHide: null // Limpa a ajuda da rodada anterior
             }
 
         case "NEW_GAME":
