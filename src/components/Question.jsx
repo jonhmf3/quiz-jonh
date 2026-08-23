@@ -2,6 +2,7 @@ import { useContext, useState, useEffect } from 'react'
 import { QuizContext } from '../context/quiz'
 import "./Question.css"
 import Option from './Option'
+import Level from "../img/level-up-next-level.gif"
 
 const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext)
@@ -66,8 +67,9 @@ const Question = () => {
         backgroundColor: '#1c1a27',
         borderRadius: '12px',
         textAlign: 'center',
-        border: '3px solid #ffcc00'
+        border: '3px solid #00ffa2'
       }}>
+        <img src={Level} alt="Fim do Quiz" />
         <h2 style={{ color: '#ffcc00', fontSize: '28px', marginBottom: '10px' }}>⚠️ ATENÇÃO JOGADOR!</h2>
         <p style={{ fontSize: '18px', margin: '20px 0', color: '#fff' }}>
           Você concluiu a etapa anterior com sucesso. Prepare-se!
