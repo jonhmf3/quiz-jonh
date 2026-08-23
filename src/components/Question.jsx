@@ -70,7 +70,7 @@ const Question = () => {
         border: '3px solid #00ffa2'
       }}>
         <img src={Level} alt="Fim do Quiz" />
-        <h2 style={{ color: '#ffcc00', fontSize: '28px', marginBottom: '10px' }}>⚠️ ATENÇÃO JOGADOR!</h2>
+        <h2 style={{ color: '#ffcc00', fontSize: '28px', marginBottom: '10px' }}> BOA JOGADOR!</h2>
         <p style={{ fontSize: '18px', margin: '20px 0', color: '#fff' }}>
           Você concluiu a etapa anterior com sucesso. Prepare-se!
         </p>
