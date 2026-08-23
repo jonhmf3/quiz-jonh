@@ -67,7 +67,7 @@ const Question = () => {
         backgroundColor: '#1c1a27',
         borderRadius: '12px',
         textAlign: 'center',
-        border: '3px solid #00ffa2'
+        border: '3px solid #ccff00'
       }}>
         <img src={Level} alt="Fim do Quiz" />
         <h2 style={{ color: '#ffcc00', fontSize: '28px', marginBottom: '10px' }}> BOA JOGADOR!</h2>
