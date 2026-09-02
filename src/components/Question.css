@@ -21,3 +21,10 @@
     border: 2px solid #fff;
     margin: 0.5rem
 }
+
+.question-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+}

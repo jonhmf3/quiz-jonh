@@ -1,3 +1,5 @@
+import marVermelho from "../img/mar-vermelho.jpg";
+
 const data = [
   {
     category: "Futebol",
@@ -322,6 +324,22 @@ const data = [
   {
     category: "Bíblia",
     questions: [
+  {
+  question: "Qual acontecimento bíblico está representado nesta imagem?",
+
+  image: marVermelho,
+
+  options: [
+    "A Arca de Noé",
+    "A abertura do Mar Vermelho",
+    "A queda de Jericó",
+    "Davi contra Golias"
+  ],
+
+  answer: "A abertura do Mar Vermelho",
+
+  tip: "Esse acontecimento ocorreu durante a fuga do povo de Israel do Egito.",
+},
       {
     question: "De acordo com o livro de Gênesis, qual é o primeiro livro oficial da Bíblia Sagrada?",
     options: ["Êxodo", "Apocalipse", "Salmos", "Gênesis"],

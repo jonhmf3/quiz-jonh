@@ -3,6 +3,7 @@ import { QuizContext } from '../context/quiz'
 import "./Question.css"
 import Option from './Option'
 import Level from "../img/level-up-next-level.gif"
+import marVermelho from "../img/mar-vermelho.jpg";
 
 const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext)
@@ -114,7 +115,9 @@ const Question = () => {
       </div>
       
       <h2>{currentQuestion.question}</h2>
-      
+      {currentQuestion.image && (
+  <img src={currentQuestion.image} alt="Imagem da pergunta" className='question-image' />
+)}
       <div id="options-container">
         {currentQuestion.options.map((option) => (
           <Option 
