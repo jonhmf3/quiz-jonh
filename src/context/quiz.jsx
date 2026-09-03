@@ -12,8 +12,10 @@ const initialState = {
     answerSelected: false,
     help: false,
     optionToHide: null,
-    userName: "" // 🌟 Guarda o nome globalmente
+    userName: "" ,// 🌟 Guarda o nome globalmente
+    selectedCategory: ""
 };
+
 
 const quizReducer = (state, action) => {
     console.log(state, action);
@@ -38,11 +40,12 @@ const quizReducer = (state, action) => {
                     quizQuestions = question.questions;
                 }
             });
-            return {
-                ...state,
-                questions: quizQuestions,
-                gameStage: STAGES[2],
-            };
+           return {
+    ...state,
+    questions: quizQuestions,
+    selectedCategory: action.payload,
+    gameStage: STAGES[2],
+};
 
         case "REORDER_QUESTIONS":
             const reorderedQuestions = state.questions.sort(() => {
