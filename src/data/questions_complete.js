@@ -328,7 +328,7 @@ const data = [
   question: "Qual acontecimento bíblico está representado nesta imagem?",
 
   image: marVermelho,
-
+distorted: true, //essa propriedade diz para o Question.jsx que ela participa do desafio de adivinhaçao
   options: [
     "A Arca de Noé",
     "A abertura do Mar Vermelho",

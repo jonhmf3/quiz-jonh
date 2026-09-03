@@ -27,4 +27,20 @@
     max-width: 400px;
     border-radius: 0.5rem;
     margin-bottom: 1.5rem;
+    transition: filter 0.8s ease; /*faz a revelação acontecer suavemente em vez de a imagem simplesmente “piscar” de borrada para normal*/
+}
+
+/*filter: blur(15px); que cria o borrado.*/
+/*Antes da resposta
+distorted: true
++ answerSelected: false
+→ blur(15px)
+
+Jogador responde
+→ answerSelected passa a ter um valor
+→ classe de blur desaparece
+→ imagem fica nítida ✨*/
+
+.question-image-distorted {
+    filter: blur(6px); 
 }

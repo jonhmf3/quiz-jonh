@@ -114,10 +114,27 @@ const Question = () => {
         </span>
       </div>
       
+        {/*A pergunta é distorcida?
+        E
+O jogador ainda não respondeu?
+        ↓
+SIM → adiciona a classe question-image-distorted
+NÃO → imagem normal 
+Então as duas condições precisam ser verdadeiras.*/}
+
       <h2>{currentQuestion.question}</h2>
       {currentQuestion.image && (
-  <img src={currentQuestion.image} alt="Imagem da pergunta" className='question-image' />
-)}
+  <img 
+  src={currentQuestion.image} 
+  alt="Imagem da pergunta" 
+  className={`question-image ${
+      currentQuestion.distorted && !quizState.answerSelected
+        ? "question-image-distorted"
+        : ""
+    }`} />
+      )}
+
+    
       <div id="options-container">
         {currentQuestion.options.map((option) => (
           <Option 
