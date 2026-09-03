@@ -3,83 +3,53 @@ import { QuizContext } from '../context/quiz'
 import WellDone from "../img/welldone.svg"
 import "./GameOver.css"
 
-const ENDERECO_BASE = "https://" + "api.jsonbin.io/v3/b/";
-const ID_DO_SEU_BIN = "6a8501d8da38895dfef51634";
-const API_URL = ENDERECO_BASE + ID_DO_SEU_BIN;
-const MASTER_KEY = "$2a$10$EKCQjrXfx3foSGQinigs4.VWkzeiLpULey.cLgpo6kqYIht2W5ihS";
+
 
 const GameOver = () => {
   const [quizState, dispatch] = useContext(QuizContext)
   const [leaders, setLeaders] = useState([])
 
   // 🏷️ 1. Identifica qual categoria foi jogada nesta partida para saber onde salvar/buscar
-  const categoriaJogada = quizState.questions[0]?.category || "Futebol";
+  const categoriaJogada = quizState.selectedCategory || "Futebol"
 
-  // 🗄️ 2. Mapeia o nome da categoria para a chave exata do banco de dados na nuvem
-  const obterChaveBanco = (categoria) => {
-    if (categoria.includes("Rebelde") || categoria.includes("RBD")) return "rankingRBD";
-    if (categoria.includes("Bíblia") || categoria.includes("Biblia")) return "rankingBiblia";
-    return "rankingFutebol"; // Padrão
-  };
+  
 
-  const chaveBancoAtual = obterChaveBanco(categoriaJogada);
+  
 
-  useEffect(() => {
-    const processRanking = async () => {
-      try {
-        // 3. Faz o GET para buscar o objeto completo com todos os rankings da nuvem
-        const responseGet = await fetch(API_URL, {
-          method: "GET",
-          headers: {
-            "X-Master-Key": MASTER_KEY,
-            "X-Bin-Meta": "false"
-          }
+ useEffect(() => {
+  const processRanking = async () => {
+    try {
+      const response = await fetch("/api/ranking", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nome: quizState.userName?.trim() || "Jogador Anônimo",
+          pontuacao: quizState.score * 10,
+          categoria: categoriaJogada
         })
-        const dadosCompletosDoBanco = await responseGet.json()
+      })
 
-        // 4. Captura apenas a lista específica do tema jogado (se não existir nada ainda, começa um array vazio)
-        const listaDesteTema = dadosCompletosDoBanco[chaveBancoAtual] || [];
-
-        // 5. Prepara os dados do jogador atual e calcula a pontuação (15 perguntas * 10 = 150 pts max)
-        const nomeDoJogador = quizState.userName?.trim() || "Jogador Anônimo";
-        const pontuacaoAtual = quizState.score * 10;
-
-        // 6. Monta a nova lista adicionando o novo recordista
-        const novaListaComNovoJogador = [...listaDesteTema, { name: nomeDoJogador, score: pontuacaoAtual }];
-        
-        // 7. Ordena colocando as maiores pontuações no topo
-        const listaOrdenada = novaListaComNovoJogador.sort((a, b) => b.score - a.score);
-
-        // 8. 🚨 Atualiza o objeto geral preservando as listas das OUTRAS categorias que não foram jogadas agora
-        const novoObjetoParaEnviar = {
-          ...dadosCompletosDoBanco, // Mantém o que já tinha dos outros temas
-          [chaveBancoAtual]: listaOrdenada // Atualiza APENAS a lista do tema atual
-        };
-
-        // 9. Faz o PUT para atualizar o banco de dados na nuvem com a nova estrutura separada
-        const responsePut = await fetch(API_URL, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Master-Key": MASTER_KEY
-          },
-          body: JSON.stringify(novoObjetoParaEnviar)
-        })
-
-        if (!responsePut.ok) {
-          throw new Error("Erro na sincronização.")
-        }
-
-        // 10. Atualiza a tela exibindo apenas o Top Líderes do tema selecionado
-        setLeaders(listaOrdenada)
-
-      } catch (error) {
-        console.error("Erro no processamento do ranking por categoria:", error)
+      if (!response.ok) {
+        throw new Error("Erro ao salvar o ranking.")
       }
+
+      const dados = await response.json()
+
+      setLeaders(dados.ranking || [])
+
+    } catch (error) {
+      console.error("Erro no processamento do ranking:", error)
     }
-    
-    processRanking()
-  }, [quizState.score, quizState.userName, chaveBancoAtual])
+  }
+
+  processRanking()
+}, [
+  quizState.score,
+  quizState.userName,
+  categoriaJogada
+])
 
   return (
     <div id='gameover'>
