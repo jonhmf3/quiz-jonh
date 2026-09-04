@@ -44,3 +44,55 @@ Jogador responde
 .question-image-distorted {
     filter: blur(6px); 
 }
+
+/*%*/
+.answer-feedback {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    animation: feedbackPop 0.4s ease;
+}
+/*%*/
+.feedback-correct {
+    background-color: #00ff7f;
+    color: #1c1a27;
+}
+.feedback-wrong {
+    background-color: #ff4747;
+    color: #fff;
+}
+
+/*% O @keyframes é a parte nova e divertida. 😄 Ele diz:
+
+começa pequeno e invisível
+        ↓
+cresce um pouquinho além do tamanho normal
+        ↓
+volta ao tamanho normal*/
+@keyframes feedbackPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    70% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.combo-badge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 0.4rem 0.8rem;
+    background-color: #2b283d;
+    border-radius: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    animation: feedbackPop 0.4s ease;
+}

@@ -9,6 +9,7 @@ const initialState = {
     questions,
     currentQuestion: 0,
     score: 0,
+    combo: 0, /*& significa simplesmente: No começo da partida, o jogador tem zero acertos consecutivos. */
     answerSelected: false,
     help: false,
     optionToHide: null,
@@ -87,6 +88,7 @@ const quizReducer = (state, action) => {
             return {
                 ...state,
                 score: state.score + correctAnswer,
+                combo: correctAnswer === 1 ? state.combo + 1 : 0, /*& A resposta foi correta?  SIM → pega o combo atual e soma 1  NÃO → combo volta para 0, então: acertou → 1, acertou → 2, acertou → 3, errou   → 0, acertou → 1  */ 
                 answerSelected: option,
             };
 

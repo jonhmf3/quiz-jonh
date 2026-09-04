@@ -8,6 +8,10 @@ import marVermelho from "../img/mar-vermelho.jpg";
 const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext)
   const currentQuestion = quizState.questions[quizState.currentQuestion]
+  /*% Isso simplesmente pergunta: resposta escolhida === resposta correta ?,  
+  Se forem iguais: acertou = true, Se forem diferentes: acertou = false */
+const acertou = quizState.answerSelected === currentQuestion.answer
+
 
   // 🎭 Estados da tela de transição de dificuldade
   const [showTransition, setShowTransition] = useState(false)
@@ -27,7 +31,7 @@ const Question = () => {
       setShowTransition(true)
     }
     // Toda vez que o jogador muda de pergunta, reseta o relógio para 15 segundos
-    setTempoRestante(15)
+    setTempoRestante(20)
   }, [quizState.currentQuestion])
 
   // ⏱️ EFEITO DO RELÓGIO: Faz a contagem regressiva segundo a segundo
@@ -113,6 +117,16 @@ const Question = () => {
           Nível: {quizState.currentQuestion < 5 ? 'Fácil' : quizState.currentQuestion < 10 ? 'Médio' : 'Difícil'}
         </span>
       </div>
+
+{/*&A logica aqui é: combo 0 → não aparece, combo 1 → não aparece, combo 2 → 🔥 Combo x2, combo 3 → 🔥 Combo x3, combo 4 → 🔥 Combo x4,  errou → combo volta para 0 → desaparece    */}
+      {quizState.combo >= 2 && (
+  <div
+    key={quizState.combo} // quando o combo muda de 2 para 3, por exemplo, o React trata esse elemento como renovado. Isso ajuda a animação a acontecer novamente. 
+    className="combo-badge"
+  >
+    🔥 Combo x{quizState.combo}
+  </div>
+)}
       
         {/*A pergunta é distorcida?
         E
@@ -148,10 +162,40 @@ Então as duas condições precisam ser verdadeiras.*/}
         ))}
       </div>
 
-      {/* Alerta textual exibido apenas se o tempo estourar a zero */}
-      {quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" && (
-        <p style={{ color: '#ff4747', fontWeight: 'bold', textAlign: 'center', margin: '15px 0' }}>🛑 O tempo acabou! Você perdeu essa rodada.</p>
-      )}
+{/*% A lógica é:
+
+alguém respondeu?
+       ↓
+      SIM
+       ↓
+acertou?
+ ├─ SIM → Mandou bem!
+ └─ NÃO
+      ↓
+      tempo acabou?
+      ├─ SIM → Tempo esgotado!
+      └─ NÃO → Quase! */}
+     {quizState.answerSelected && (
+  <div className={`answer-feedback ${
+    acertou ? "feedback-correct" : "feedback-wrong"
+  }`}>
+
+    {acertou ? (
+      <p>🎉 Mandou bem! Resposta correta!</p>
+    ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
+      <p>
+        ⏰ Tempo esgotado! A resposta correta era:{" "}
+        <strong>{currentQuestion.answer}</strong>
+      </p>
+    ) : (
+      <p>
+        😬 Quase! A resposta correta era:{" "}
+        <strong>{currentQuestion.answer}</strong>
+      </p>
+    )}
+
+  </div>
+)}
 
       {!quizState.answerSelected && !quizState.help && (
         <>
