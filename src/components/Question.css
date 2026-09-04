@@ -211,7 +211,32 @@ volta ao tamanho normal*/
 }
 
 @media (max-width: 768px) {
+
+    #question {
+        padding: 1rem;
+    }
+
+    #question h2 {
+        font-size: 1.25rem;
+        margin-bottom: 1.2rem;
+    }
+
     #options-container {
         grid-template-columns: 1fr;
+        gap: 0.7rem;
     }
+
+    .question-image {
+        max-height: 280px;
+        object-fit: cover;
+    }
+
+    #question > div:first-child {
+    font-size: 10px !important;
+    gap: 0.4rem;
+}
+
+#question > div:first-child span {
+    white-space: nowrap;
+}
 }

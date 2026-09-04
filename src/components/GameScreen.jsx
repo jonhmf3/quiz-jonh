@@ -6,6 +6,7 @@ import "./GameScreen.css"
 const GameScreen = () => {
   const [quizState] = useContext(QuizContext)
   const [ranking, setRanking] = useState([])
+  const [showRanking, setShowRanking] = useState(false)
   
 
 const rankingPorCategoria = {
@@ -102,7 +103,16 @@ const nivelAtual =
         <Question />
       </main>
 
-     <aside className="ranking-panel">
+      <button
+  className="ranking-toggle"
+  onClick={() => setShowRanking(!showRanking)}
+>
+  🏆 {showRanking ? "Ocultar ranking" : "Ver ranking"}
+</button>
+
+     <aside
+  className={`ranking-panel ${showRanking ? "ranking-open" : ""}`}
+>
   <h3>🏆 Ranking</h3>
 
   <p className="ranking-category">
