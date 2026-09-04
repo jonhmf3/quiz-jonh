@@ -89,72 +89,46 @@ const getTransitionMessage = () => {
 }
 
   // 🚧 RENDERIZA A TELA DE TRANSIÇÃO DE DIFICULDADE
- if (showTransition) {
+if (showTransition) {
   return (
-    <div
-      className="difficulty-transition"
-      style={{
-        padding: '30px',
-        backgroundColor: '#1c1a27',
-        borderRadius: '12px',
-        textAlign: 'center',
-        border: '3px solid #ccff00'
-      }}
-    >
-      <img src={Level} alt="Mudança de nível" />
+    <div className="difficulty-transition">
 
-      <h2
-        style={{
-          color: '#ffcc00',
-          fontSize: '28px',
-          marginBottom: '10px'
-        }}
-      >
-        NOVO NÍVEL!
-      </h2>
+      <img
+        src={Level}
+        alt="Mudança de nível"
+        className="level-image"
+      />
 
-      <p>{getTransitionMessage()}</p>
+      <span className="level-label">
+        LEVEL UP
+      </span>
 
-      <div
-        style={{
-          padding: '15px',
-          backgroundColor: '#2b283d',
-          borderRadius: '8px',
-          margin: '25px 0',
-          borderLeft: '5px solid #8435de'
-        }}
-      >
-        <h3
-          style={{
-            color: '#8435de',
-            fontSize: '20px',
-            margin: 0
-          }}
-        >
-          🔥 A dificuldade aumentou para o nível:{" "}
-          <span
-            style={{
-              color: '#00ff7f',
-              fontWeight: 'bold'
-            }}
-          >
-            {transitionStage}
-          </span>
-          !
-        </h3>
+      <h2>Novo nível!</h2>
+
+      <p className="transition-message">
+        {getTransitionMessage()}
+      </p>
+
+      <div className="new-level">
+        <span>Próxima dificuldade</span>
+        <strong>{transitionStage}</strong>
       </div>
 
       <button
+        className="transition-button"
         onClick={() => {
           dispatch({ type: "RESET_STAGE_SCORE" })
           setShowTransition(false)
         }}
       >
-        🚀 Continuar para o nível {transitionStage}
+        Continuar
       </button>
+
     </div>
   )
 }
+
+
   return (
     <div id="question">
       {/* Barra informativa do topo atualizada com o Relógio Regressivo */}
