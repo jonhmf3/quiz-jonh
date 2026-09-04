@@ -59,23 +59,44 @@ const jogadorEstaNoTop4 = top4.some(
   (player) => player.jogadorAtual
 )
 
+const nivelAtual =
+  quizState.currentQuestion < 5
+    ? "Fácil"
+    : quizState.currentQuestion < 10
+    ? "Médio"
+    : "Difícil"
 
   return (
     <div className="game-screen">
 
-      <aside className="player-panel">
-        <h3>👤 Jogador</h3>
+    <aside className="player-panel">
 
-        <p className="player-name">
-          {quizState.userName}
-        </p>
+  <h3>👤 Jogador</h3>
 
-        <p>⭐ {quizState.score * 10} pontos</p>
+  <p className="player-name">
+    {quizState.userName}
+  </p>
 
-        {quizState.combo >= 2 && (
-          <p>🔥 Combo x{quizState.combo}</p>
-        )}
-      </aside>
+  <div className="player-stats">
+
+    <div className="player-stat">
+      <span>⭐ Pontos</span>
+      <strong>{quizState.score * 10}</strong>
+    </div>
+
+    <div className="player-stat">
+      <span>🔥 Combo</span>
+      <strong>x{quizState.combo}</strong>
+    </div>
+
+    <div className="player-stat">
+      <span>🎯 Nível</span>
+      <strong>{nivelAtual}</strong>
+    </div>
+
+  </div>
+
+</aside>
 
       <main className="main-screen">
         <Question />
