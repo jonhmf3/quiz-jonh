@@ -96,3 +96,20 @@ volta ao tamanho normal*/
     font-size: 1rem;
     animation: feedbackPop 0.4s ease;
 }
+
+/*# Isso vai fazer a barra avançar suavemente a cada pergunta.*/
+.progress-container {
+    width: 100%;
+    height: 8px;
+    background-color: #2b283d;
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #00ff7f;
+    border-radius: 999px;
+    transition: width 0.4s ease;
+}

@@ -96,7 +96,9 @@ const acertou = quizState.answerSelected === currentQuestion.answer
       {/* Barra informativa do topo atualizada com o Relógio Regressivo */}
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '12px', color: '#aaa', alignItems: 'center' }}>
         <span>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}</span>
-        
+
+   
+
         {/* ⏱️ EXIBIÇÃO VISUAL DO CRONÔMETRO (Muda de cor para vermelho se o tempo estiver acabando!) */}
         <span style={{ 
           fontWeight: 'bold', 
@@ -117,6 +119,18 @@ const acertou = quizState.answerSelected === currentQuestion.answer
           Nível: {quizState.currentQuestion < 5 ? 'Fácil' : quizState.currentQuestion < 10 ? 'Médio' : 'Difícil'}
         </span>
       </div>
+
+
+{/*# a conta é: pergunta atual ÷ total de perguntas × 100 , exemplo: Pergunta 10 de 20  10 ÷ 20 = 0,5 0,5 × 100 = 50%, então a barra fica pela metade.   */}     
+
+      <div className="progress-container">
+  <div
+    className="progress-bar"
+    style={{
+      width: `${((quizState.currentQuestion + 1) / quizState.questions.length) * 100}%`
+    }}
+  ></div>
+</div>
 
 {/*&A logica aqui é: combo 0 → não aparece, combo 1 → não aparece, combo 2 → 🔥 Combo x2, combo 3 → 🔥 Combo x3, combo 4 → 🔥 Combo x4,  errou → combo volta para 0 → desaparece    */}
       {quizState.combo >= 2 && (
