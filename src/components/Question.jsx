@@ -3,7 +3,7 @@ import { QuizContext } from '../context/quiz'
 import "./Question.css"
 import Option from './Option'
 import Level from "../img/level-up-next-level.gif"
-import marVermelho from "../img/mar-vermelho.jpg";
+
 
 const Question = () => {
   const [quizState, dispatch] = useContext(QuizContext)
@@ -17,8 +17,8 @@ const acertou = quizState.answerSelected === currentQuestion.answer
   const [showTransition, setShowTransition] = useState(false)
   const [transitionStage, setTransitionStage] = useState("")
 
-  // ⏱️ ESTADO DO CRONÔMETRO: Começa com 15 segundos para cada pergunta
-  const [tempoRestante, setTempoRestante] = useState(15)
+  // ⏱️ ESTADO DO CRONÔMETRO: Começa com 20 segundos para cada pergunta
+  const [tempoRestante, setTempoRestante] = useState(20)
 
   // 🔄 MONITOR DO JOGO: Controla a transição de dificuldade
   useEffect(() => {
@@ -48,6 +48,8 @@ const acertou = quizState.answerSelected === currentQuestion.answer
       return;
     }
 
+
+
     // Cria o temporizador para rodar e diminuir 1 segundo a cada 1000 milissegundos
     const temporizador = setInterval(() => {
       setTempoRestante((tempoAnterior) => tempoAnterior - 1)
@@ -64,33 +66,95 @@ const acertou = quizState.answerSelected === currentQuestion.answer
     })
   }
 
+const getTransitionMessage = () => {
+  const acertos = quizState.stageScore
+
+  if (acertos === 5) {
+    return "🔥 Perfeito! Você dominou o nível anterior com 5 de 5!"
+  }
+
+  if (acertos === 4) {
+    return "👏 Mandou muito bem! Você acertou 4 de 5!"
+  }
+
+  if (acertos >= 2) {
+    return `💪 Você acertou ${acertos} de 5. Dá para buscar ainda mais no próximo nível!`
+  }
+
+  if (acertos === 1) {
+    return "🎯 Você acertou 1 de 5. Novo nível, nova chance de reagir!"
+  }
+
+  return "🎯 Nenhum acerto nesta etapa, mas agora começa um novo nível. Bora reagir!"
+}
+
   // 🚧 RENDERIZA A TELA DE TRANSIÇÃO DE DIFICULDADE
-  if (showTransition) {
-    return (
-      <div className="difficulty-transition" style={{
+ if (showTransition) {
+  return (
+    <div
+      className="difficulty-transition"
+      style={{
         padding: '30px',
         backgroundColor: '#1c1a27',
         borderRadius: '12px',
         textAlign: 'center',
         border: '3px solid #ccff00'
-      }}>
-        <img src={Level} alt="Fim do Quiz" />
-        <h2 style={{ color: '#ffcc00', fontSize: '28px', marginBottom: '10px' }}> BOA JOGADOR!</h2>
-        <p style={{ fontSize: '18px', margin: '20px 0', color: '#fff' }}>
-          Você concluiu a etapa anterior com sucesso. Prepare-se!
-        </p>
-        <div style={{ padding: '15px', backgroundColor: '#2b283d', borderRadius: '8px', margin: '25px 0', borderLeft: '5px solid #8435de' }}>
-          <h3 style={{ color: '#8435de', fontSize: '20px', margin: 0 }}>
-            🔥 A dificuldade aumentou para o nível: <span style={{ color: '#00ff7f', fontWeight: 'bold' }}>{transitionStage}</span>!
-          </h3>
-        </div>
-        <button onClick={() => setShowTransition(false)} style={{ padding: '12px 30px', backgroundColor: '#00ff7f', color: '#1c1a27', border: 'none', borderRadius: '6px', fontSize: '16px', fontWeight: 'bold', cursor: 'pointer' }}>
-          🚀 Estou Pronto, Mandar Bala!
-        </button>
-      </div>
-    )
-  }
+      }}
+    >
+      <img src={Level} alt="Mudança de nível" />
 
+      <h2
+        style={{
+          color: '#ffcc00',
+          fontSize: '28px',
+          marginBottom: '10px'
+        }}
+      >
+        NOVO NÍVEL!
+      </h2>
+
+      <p>{getTransitionMessage()}</p>
+
+      <div
+        style={{
+          padding: '15px',
+          backgroundColor: '#2b283d',
+          borderRadius: '8px',
+          margin: '25px 0',
+          borderLeft: '5px solid #8435de'
+        }}
+      >
+        <h3
+          style={{
+            color: '#8435de',
+            fontSize: '20px',
+            margin: 0
+          }}
+        >
+          🔥 A dificuldade aumentou para o nível:{" "}
+          <span
+            style={{
+              color: '#00ff7f',
+              fontWeight: 'bold'
+            }}
+          >
+            {transitionStage}
+          </span>
+          !
+        </h3>
+      </div>
+
+      <button
+        onClick={() => {
+          dispatch({ type: "RESET_STAGE_SCORE" })
+          setShowTransition(false)
+        }}
+      >
+        🚀 Continuar para o nível {transitionStage}
+      </button>
+    </div>
+  )
+}
   return (
     <div id="question">
       {/* Barra informativa do topo atualizada com o Relógio Regressivo */}
