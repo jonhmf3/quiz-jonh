@@ -1,0 +1,40 @@
+.game-screen {
+    width: 95vw;
+    max-width: 1400px;
+
+    display: grid;
+    grid-template-columns: 220px minmax(500px, 1fr) 220px;
+
+    gap: 1.5rem;
+
+    align-items: start;
+
+    padding: 2rem;
+
+    background-color: #12101d;
+
+    border: 2px solid #8435de;
+    border-radius: 1rem;
+}
+
+.player-panel,
+.ranking-panel {
+    background-color: #1c1a27;
+
+    padding: 1.2rem;
+
+    border-radius: 1rem;
+
+    text-align: center;
+}
+
+.main-screen {
+    display: flex;
+    justify-content: center;
+}
+
+.player-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00ff7f;
+}
