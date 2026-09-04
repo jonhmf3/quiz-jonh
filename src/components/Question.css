@@ -213,7 +213,14 @@ volta ao tamanho normal*/
 @media (max-width: 768px) {
 
     #question {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
         padding: 1rem;
+
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     #question h2 {
@@ -221,9 +228,19 @@ volta ao tamanho normal*/
         margin-bottom: 1.2rem;
     }
 
-    #options-container {
-        grid-template-columns: 1fr;
-        gap: 0.7rem;
+     #options-container {
+        width: 100%;
+        max-width: 100%;
+
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+ .option {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        box-sizing: border-box;
     }
 
     .question-image {

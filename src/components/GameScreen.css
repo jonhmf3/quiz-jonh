@@ -200,23 +200,56 @@
     display: block;
 }
 
-    .game-screen {
+     .game-screen {
         width: 100%;
-        max-width: none;
+        max-width: 100%;
 
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
 
         gap: 1rem;
-        padding: 0.8rem;
+        padding: 0.6rem;
 
-        border-radius: 1rem;
+        box-sizing: border-box;
+
+        overflow-x: hidden;
     }
 
+
     .player-panel,
+    .main-screen,
     .ranking-panel,
-    .main-screen {
+    .ranking-toggle {
         width: 100%;
+        max-width: 100%;
         min-width: 0;
+
+        box-sizing: border-box;
+    }
+
+    .player-panel {
+    order: 1;
+}
+
+.ranking-toggle {
+    order: 2;
+}
+
+.ranking-panel {
+    order: 3;
+}
+
+.main-screen {
+    order: 4;
+}
+
+.main-screen {
+    padding: 0.3rem;
+    overflow: hidden;
+}
+
+    .main-screen {
+        padding: 0.3rem;
+        overflow: hidden;
     }
 
     .player-panel {
@@ -242,9 +275,7 @@
         margin-bottom: 0.5rem;
     }
 
-    .main-screen {
-        padding: 0.4rem;
-    }
+    
 
     .ranking-panel {
         padding: 1rem;
