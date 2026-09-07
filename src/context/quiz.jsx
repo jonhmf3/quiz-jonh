@@ -14,6 +14,7 @@ const initialState = {
     answerSelected: false,
     help: false,
     optionToHide: null,
+    removeUsed: false,
     userName: "" ,// 🌟 Guarda o nome globalmente
     selectedCategory: ""
 };
@@ -71,7 +72,9 @@ const quizReducer = (state, action) => {
                 currentQuestion: nextQuestion,
                 gameStage: endGame ? STAGES[3] : state.gameStage,
                 answerSelected: false,
-                help: false
+                help: false,
+                 optionToHide: null,
+    removeUsed: false
             };
 
         case "NEW_GAME":
@@ -106,29 +109,33 @@ const quizReducer = (state, action) => {
                 help: "tip"
             };
 
-        case "REMOVE_OPTION":
-            let questioWithoutOption = state.questions[state.currentQuestion];
-            let repeat = true;
-            let optionToHide;
+      case "REMOVE_OPTION":
+    // Se já usou o excluir nesta pergunta, não faz nada
+    if (state.removeUsed) {
+        return state;
+    }
 
-            questioWithoutOption.options.forEach((option) => {
-                if(option !== questioWithoutOption.answer && repeat){
-                    optionToHide = option;
-                    repeat = false;
-                }
-            });
+    let questioWithoutOption = state.questions[state.currentQuestion];
+    let repeat = true;
+    let optionToHide;
 
-            return {
-                ...state,
-                optionToHide,
-                help: true
-            };
+    questioWithoutOption.options.forEach((option) => {
+        if (option !== questioWithoutOption.answer && repeat) {
+            optionToHide = option;
+            repeat = false;
+        }
+    });
 
-        default:
-            return state;
+    return {
+        ...state,
+        optionToHide,
+        removeUsed: true
+    };
+
+    default:
+    return state;
     }
 };
-
 export const QuizContext = createContext();
 
 export const QuizProvider = ({children}) => {

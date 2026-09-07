@@ -15,7 +15,9 @@ function App() {
 
   return (
    <div className='App'>
-       <h1>Desafio Tech do Jonathan</h1>
+    {quizState.gameStage !== "Playing" && (
+  <h1>Desafio Tech do Jonathan</h1>
+)}
        {quizState.gameStage === "Start" && <Welcome/>}
        {quizState.gameStage === "Category" && <PickCategory/>}
        {quizState.gameStage === "Playing" && <GameScreen/>}

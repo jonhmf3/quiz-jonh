@@ -207,13 +207,30 @@ const data = [
     category: "Novela Rebelde (RBD)",
     questions: [
       {
+  question: "Qual acontecimento bíblico está representado nesta imagem?",
+
+  image: marVermelho,
+distorted: true, //essa propriedade diz para o Question.jsx que ela participa do desafio de adivinhaçao
+  options: [
+    "A Arca de Noé",
+    "A abertura do Mar Vermelho",
+    "A queda de Jericó",
+    "Davi contra Golias"
+  ],
+
+  answer: "A abertura do Mar Vermelho",
+
+  tip: "Esse acontecimento ocorreu durante a fuga do povo de Israel do Egito.",
+},
+      {
     question: "Qual é o nome do colégio interno de elite onde os protagonistas estudam na novela?",
     options: ["Las Encinas", "Elite Way School", "Liberty High", "Saint Mary School"],
     answer: "Elite Way School",
     tip: "A sigla do colégio (EWS) aparece estampada em vários cenários e uniformes.",
     difficulty: "Fácil"
   },
-  {
+
+ /* {
     question: "Quem são os seis integrantes oficiais da banda RBD?",
     options: [
       "Mía, Miguel, Roberta, Diego, Lupita e Giovanni",
@@ -316,7 +333,8 @@ const data = [
     tip: "Essa personagem marcou a estreia da atriz na televisão internacional.",
     difficulty: "Fácil"
   }
-      
+       */
+ 
     ],
   },
 

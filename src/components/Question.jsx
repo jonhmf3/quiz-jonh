@@ -10,6 +10,7 @@ const Question = () => {
   const currentQuestion = quizState.questions[quizState.currentQuestion]
   /*% Isso simplesmente pergunta: resposta escolhida === resposta correta ?,  
   Se forem iguais: acertou = true, Se forem diferentes: acertou = false */
+console.log("removeUsed:", quizState.removeUsed)
 const acertou = quizState.answerSelected === currentQuestion.answer
 
 
@@ -128,144 +129,195 @@ if (showTransition) {
   )
 }
 
+return (
+  <div className="question-wrapper">
 
-  return (
-    <div id="question">
-      {/* Barra informativa do topo atualizada com o Relógio Regressivo */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '12px', color: '#aaa', alignItems: 'center' }}>
-        <span>Pergunta {quizState.currentQuestion + 1} de {quizState.questions.length}</span>
+   <div
+  
+  id="question"
+  className={`
+    ${currentQuestion.image ? "question-with-image" : ""}
+    ${quizState.help === "tip" ? "question-tip-open" : ""}
+    ${quizState.combo >= 2 ? "combo-active" : ""}
+  `}
+>
 
-   
+      {/* Barra superior: pergunta, relógio e nível */}
+   <div className="question-topbar">
 
-        {/* ⏱️ EXIBIÇÃO VISUAL DO CRONÔMETRO (Muda de cor para vermelho se o tempo estiver acabando!) */}
-        <span style={{ 
-          fontWeight: 'bold', 
-          fontSize: '14px',
-          color: tempoRestante > 5 ? '#00ff7f' : '#ff4747',
-          padding: '4px 10px',
-          backgroundColor: '#1c1a27',
-          borderRadius: '6px',
-          border: tempoRestante > 5 ? '1px solid #00ff7f' : '1px solid #ff4747'
-        }}>
-          ⏱️ {tempoRestante}s
-        </span>
+  <span className="question-counter">
+    {quizState.currentQuestion + 1} de {quizState.questions.length}
+  </span>
 
-        <span style={{ 
-          fontWeight: 'bold', 
-          color: quizState.currentQuestion < 5 ? '#00ff7f' : quizState.currentQuestion < 10 ? '#ffcc00' : '#ff4747' 
-        }}>
-          Nível: {quizState.currentQuestion < 5 ? 'Fácil' : quizState.currentQuestion < 10 ? 'Médio' : 'Difícil'}
-        </span>
-      </div>
-
-
-{/*# a conta é: pergunta atual ÷ total de perguntas × 100 , exemplo: Pergunta 10 de 20  10 ÷ 20 = 0,5 0,5 × 100 = 50%, então a barra fica pela metade.   */}     
-
-      <div className="progress-container">
-  <div
-    className="progress-bar"
-    style={{
-      width: `${((quizState.currentQuestion + 1) / quizState.questions.length) * 100}%`
-    }}
-  ></div>
-</div>
-
-{/*&A logica aqui é: combo 0 → não aparece, combo 1 → não aparece, combo 2 → 🔥 Combo x2, combo 3 → 🔥 Combo x3, combo 4 → 🔥 Combo x4,  errou → combo volta para 0 → desaparece    */}
-      {quizState.combo >= 2 && (
-  <div
-    key={quizState.combo} // quando o combo muda de 2 para 3, por exemplo, o React trata esse elemento como renovado. Isso ajuda a animação a acontecer novamente. 
-    className="combo-badge"
-  >
-    🔥 Combo x{quizState.combo}
+  <div className="progress-container progress-inline">
+    <div
+      className="progress-bar"
+      style={{
+        width: `${
+          ((quizState.currentQuestion + 1) /
+            quizState.questions.length) *
+          100
+        }%`
+      }}
+    ></div>
   </div>
-)}
-      
-        {/*A pergunta é distorcida?
-        E
-O jogador ainda não respondeu?
-        ↓
-SIM → adiciona a classe question-image-distorted
-NÃO → imagem normal 
-Então as duas condições precisam ser verdadeiras.*/}
 
-      <h2>{currentQuestion.question}</h2>
-      {currentQuestion.image && (
-  <img 
-  src={currentQuestion.image} 
-  alt="Imagem da pergunta" 
-  className={`question-image ${
-      currentQuestion.distorted && !quizState.answerSelected
-        ? "question-image-distorted"
-        : ""
-    }`} />
-      )}
+  <span
+  className="question-timer"
+  style={{
+    color: tempoRestante > 5 ? '#00ff7f' : '#ff4747',
+    border:
+      tempoRestante > 5
+        ? '1px solid #00ff7f'
+        : '1px solid #ff4747'
+  }}
+>
+  {tempoRestante}s
+</span>
+
+  
+
+</div> 
 
     
-      <div id="options-container">
-        {currentQuestion.options.map((option) => (
-          <Option 
-            option={option} 
-            key={option} 
-            answer={currentQuestion.answer} 
-            selectOption={() => onSelectOption(option)} 
-            hide={quizState.optionToHide === option ? "hide" : null}
-            disabled={quizState.answerSelected} // Bloqueia cliques adicionais após o tempo esgotar
-          />
-        ))}
-      </div>
 
-{/*% A lógica é:
+      {/* Combo */}
+      {quizState.combo >= 2 && (
+        <div
+          key={quizState.combo}
+          className="combo-badge"
+        >
+          🔥 Combo x{quizState.combo}
+        </div>
+      )}
 
-alguém respondeu?
-       ↓
-      SIM
-       ↓
-acertou?
- ├─ SIM → Mandou bem!
- └─ NÃO
-      ↓
-      tempo acabou?
-      ├─ SIM → Tempo esgotado!
-      └─ NÃO → Quase! */}
-     {quizState.answerSelected && (
-  <div className={`answer-feedback ${
-    acertou ? "feedback-correct" : "feedback-wrong"
-  }`}>
+      {/* Pergunta */}
+      <h2>{currentQuestion.question}</h2>
 
-    {acertou ? (
-      <p>🎉 Mandou bem! Resposta correta!</p>
-    ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
-      <p>
-        ⏰ Tempo esgotado! A resposta correta era:{" "}
-        <strong>{currentQuestion.answer}</strong>
-      </p>
-    ) : (
-      <p>
-        😬 Quase! A resposta correta era:{" "}
-        <strong>{currentQuestion.answer}</strong>
-      </p>
+      {/* Texto da dica */}
+{!quizState.answerSelected && quizState.help === "tip" && (
+  <p className="question-tip">
+    💡 {currentQuestion.tip}
+  </p>
+)}
+
+    {currentQuestion.image ? (
+
+  <div className="image-question-content">
+
+    <div className="image-question-left">
+      <img
+        src={currentQuestion.image}
+        alt="Imagem da pergunta"
+        className={`question-image ${
+          currentQuestion.distorted && !quizState.answerSelected
+            ? "question-image-distorted"
+            : ""
+        }`}
+      />
+    </div>
+
+    <div id="options-container" className="image-question-options">
+      {currentQuestion.options.map((option) => (
+        <Option
+          option={option}
+          key={option}
+          answer={currentQuestion.answer}
+          selectOption={() => onSelectOption(option)}
+          hide={quizState.optionToHide === option ? "hide" : null}
+          disabled={quizState.answerSelected}
+        />
+      ))}
+    </div>
+
+  </div>
+
+) : (
+
+  <div id="options-container">
+    {currentQuestion.options.map((option) => (
+      <Option
+        option={option}
+        key={option}
+        answer={currentQuestion.answer}
+        selectOption={() => onSelectOption(option)}
+        hide={quizState.optionToHide === option ? "hide" : null}
+        disabled={quizState.answerSelected}
+      />
+    ))}
+  </div>
+
+)}
+
+      {/* Feedback */}
+      {quizState.answerSelected && (
+        <div
+          className={`answer-feedback ${
+            acertou ? "feedback-correct" : "feedback-wrong"
+          }`}
+        >
+          {acertou ? (
+            <p>🎉 Mandou bem! Resposta correta!</p>
+          ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
+            <p>
+              ⏰ Tempo esgotado! A resposta correta era:{" "}
+              <strong>{currentQuestion.answer}</strong>
+            </p>
+          ) : (
+            <p>
+              😬 Quase! A resposta correta era:{" "}
+              <strong>{currentQuestion.answer}</strong>
+            </p>
+          )}
+        </div>
+      )}
+
+
+    </div>
+
+    {/* Botões fora do telão */}
+   <div className="question-actions">
+
+  <div className="question-actions-left">
+
+  {/* DICA */}
+  {!quizState.answerSelected && currentQuestion.tip && (
+    <button
+      className={quizState.help === "tip" ? "help-used" : ""}
+      disabled={quizState.help === "tip"}
+      onClick={() => dispatch({ type: "SHOW_TIP" })}
+    >
+      {quizState.help === "tip" ? "💡 Dica usada" : "💡 Dica"}
+    </button>
+  )}
+
+  {/* EXCLUIR */}
+  {!quizState.answerSelected && (
+    <button
+      className={quizState.removeUsed ? "help-used" : ""}
+      disabled={quizState.removeUsed}
+      onClick={() => dispatch({ type: "REMOVE_OPTION" })}
+    >
+      {quizState.removeUsed ? "✂️ Usado" : "✂️ Excluir"}
+    </button>
+  )}
+
+</div>
+
+  <div className="question-actions-right">
+
+    {quizState.answerSelected && (
+      <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+        Continuar →
+      </button>
     )}
 
   </div>
-)}
 
-      {!quizState.answerSelected && !quizState.help && (
-        <>
-          {currentQuestion.tip && <button onClick={() => dispatch({ type: "SHOW_TIP" })}>Dica</button>}
-        </>
-      )}
+</div>
 
-      {!quizState.answerSelected && (
-        <button onClick={() => dispatch({ type: "REMOVE_OPTION" })}>Excluir uma</button>
-      )}
-      
-      {!quizState.answerSelected && quizState.help === "tip" && <p>{currentQuestion.tip}</p>}
-      
-      {quizState.answerSelected && (
-        <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>Continuar</button>
-      )}
-    </div>
-  )
+  </div>
+)
 }
 
 export default Question

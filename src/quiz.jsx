@@ -14,6 +14,7 @@ const initialState = {
     help: false,
     optionToHide: null,
     // ➡️ MUDANÇA 1: Adicionamos este campo para começar vazio e guardar o nome globalmente
+   removeUsed: false,
     userName: "" 
 }
 
@@ -87,13 +88,14 @@ console.log(state, action)
             }
 
            return {
-                ...state,
-                currentQuestion: nextQuestion,
-                gameStage: endGame ? STAGES[3] : state.gameStage,
-                answerSelected: false,
-                help: false,
-                optionToHide: null // Limpa a ajuda da rodada anterior
-            }
+    ...state,
+    currentQuestion: nextQuestion,
+    gameStage: endGame ? STAGES[3] : state.gameStage,
+    answerSelected: false,
+    help: false,
+    optionToHide: null,
+    removeUsed: false
+}
 
         case "NEW_GAME":
             return initialState
@@ -119,27 +121,40 @@ console.log(state, action)
                 help: "tip"
             }
 
-        case "REMOVE_OPTION":
-            let questioWithoutOption = state.questions[state.currentQuestion]
+ case "SHOW_TIP":
+    return {
+        ...state,
+        help: "tip"
+    }
 
-            let repeat = true
-            let optionToHide
+case "REMOVE_OPTION":
+    // Se já usou o excluir nesta pergunta, não faz nada
+    if (state.removeUsed) {
+        return state
+    }
 
-            questioWithoutOption.options.forEach((option) => {
-                if(option !== questioWithoutOption.answer && repeat){
-                    optionToHide = option;
-                    repeat = false
-                }
-            })
+    let questioWithoutOption = state.questions[state.currentQuestion]
 
-            return {
-                ...state,
-                optionToHide,
-                help: true
-            }
+    let repeat = true
+    let optionToHide
 
-        default:
-            return state
+    questioWithoutOption.options.forEach((option) => {
+        if (option !== questioWithoutOption.answer && repeat) {
+            optionToHide = option
+            repeat = false
+        }
+    })
+
+    return {
+        ...state,
+        optionToHide,
+        removeUsed: true
+    }
+
+default:
+    return state
+
+        
     }
 }
 

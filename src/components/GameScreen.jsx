@@ -72,7 +72,7 @@ const nivelAtual =
 
     <aside className="player-panel">
 
-  <h3>👤 Jogador</h3>
+  <h3>Jogador</h3>
 
   <p className="player-name">
     {quizState.userName}

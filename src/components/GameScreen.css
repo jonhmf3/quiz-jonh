@@ -63,17 +63,8 @@
     display: flex;
     justify-content: center;
     width: 100%;
-
     padding: 0.7rem;
-
-    background: #171426;
-
-    border: 3px solid #8435de;
-    border-radius: 1.4rem;
-
-    box-shadow:
-        0 0 25px rgba(132, 53, 222, 0.35),
-        inset 0 0 20px rgba(132, 53, 222, 0.12);
+    border-radius: 0; 
 }
 
 .player-name {
@@ -160,7 +151,7 @@
 }
 
 .player-stat strong {
-    color: #00ff7f;
+    color: #024825;
 }
 
 .player-name {
@@ -177,123 +168,136 @@
 @media (min-width: 769px) {
 
     .game-screen {
-        position: relative;
+    position: relative;
 
-        width: 100%;
-        max-width: 1600px;
+    width: 100vw;
+    max-width: 1800px;
 
-        /* Mesma proporção da imagem do palco */
-        aspect-ratio: 8 / 3;
+    aspect-ratio: 8 / 3;
 
-        display: block;
+    display: block;
 
-        padding: 0;
+    padding: 0;
+    margin: 0 auto;
 
-        background-image: url("../img/palco-quiz.png");
-        background-size: 100% 100%;
-        background-position: center;
-        background-repeat: no-repeat;
+    background-image: url("../img/palco-quiz.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 
-        border: none;
-        border-radius: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 
-        box-shadow: none;
-
-        overflow: hidden;
-    }
+    overflow: hidden;
+}
 
     /* Tela esquerda do palco */
-    .player-panel {
-        position: absolute;
+   .player-panel {
+    position: absolute;
 
-        left: 11%;
-        top: 15%;
+    left: 6.0%;
+    top: 30%;
 
-        width: 12%;
-        height: 20%;
+    width: 15%;
+    height: 18%;
 
-        padding: 0.5rem;
+    padding: 0.4rem;
 
-        background: transparent;
-        border: none;
-        box-shadow: none;
-    }
+    background: transparent;
+    border: none;
+    box-shadow: none;
 
-    .player-panel {
     overflow: hidden;
 }
 
 .player-panel h3 {
-   font-size: 0.8rem;
-    
+    font-size: 0.6rem;
+    margin: 0;
+    line-height: 1;
 }
 
 .player-panel .player-name {
-    font-size: 0.9rem;
-    
+    font-size: 0.6rem;
+   margin: 0.15rem 0 0.25rem;
+    line-height: 1;
 }
 
 .player-panel .player-stats {
-    font-size: 0.5rem;
-   
+    gap: 0.05rem;
+   margin-top: 0.05rem;
 }
 
 .player-panel .player-stat {
     padding: 0.05rem 0.15rem;
-    font-size: 0.45rem;
+    font-size: 0.48rem;
+    line-height: 1;
     background: transparent;
 }
-
    /* Telão central */
-
 
 .main-screen #question {
     width: 100%;
     height: 100%;
 
-    padding: 0.5rem 1rem;
+    padding: 0.9rem 1rem;
 
-    background: rgba(28, 26, 50, 0.92);
-
-    border-radius: 1rem;
+    background: transparent;
+    border-radius: 0;
 
     box-sizing: border-box;
     overflow: hidden;
 }
 
+/* Pergunta dentro do telão */
 .main-screen #question h2 {
+    position: relative;
+    left: -10px;
+
     font-size: 1rem;
+    line-height: 1.15;
+
     margin: 0.35rem 0 0.5rem;
 }
 
+/* Ajuste fino da mensagem de acerto/erro */
+.main-screen .answer-feedback {
+    position: relative;
+    left: -5px;
+}
+
 .main-screen #options-container {
-    gap: 0.3rem;
-    margin-top: 0.3rem;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
 }
 
 .main-screen .option {
-    min-height: 30px;
-    font-size: 0.7rem;
+    min-height: 46px;
+    font-size: 0.85rem;
 }
 
-.main-screen #question button {
-    padding: 0.5rem 0.9rem;
-    font-size: 0.8rem;
+.main-screen #options-container,
+.main-screen .answer-feedback {
+    position: relative;
+    left: -6px;
 }
+
+
 
 .main-screen {
     position: absolute;
 
     left: 31%;
-    top: 16%;
+    top: 15%;
 
     width: 39%;
-    height: 48%;
+    height: 52%;
+   
 
     padding: 0;
 
     background: transparent;
-    border: none;
+   
     box-shadow: none;
 
     overflow: hidden;
@@ -305,7 +309,7 @@
     right: 5%;
     top: 29%;
 
-    width: 16%;
+    width: 19%;
     height: 18%;
 
     padding: 0.5rem;
@@ -319,8 +323,9 @@
 
 /* Ajustes do conteúdo do ranking dentro da tela */
 .ranking-panel h3 {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     margin: 0;
+    
 }
 
 .ranking-panel .ranking-category {
@@ -335,7 +340,317 @@
     .ranking-toggle {
         display: none;
     }
+
+    /* Controles abaixo do telão */
+.main-screen {
+    overflow: visible;
 }
+
+.main-screen .question-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+
+
+
+   /* Controles laterais do telão */
+.main-screen .question-actions {
+    position: static;
+}
+
+/* Dica e Excluir - canto inferior esquerdo */
+.main-screen .question-actions-left {
+    position: absolute;
+
+    left: -0.90rem;
+    bottom: -1rem;
+
+    transform: translateX(-100%);
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    z-index: 10;
+}
+
+
+/* Continuar - canto inferior direito */
+.main-screen .question-actions-right {
+    position: absolute;
+
+    right: -0.1rem;
+    bottom: -1rem;
+
+    transform: translateX(100%);
+
+    z-index: 10;
+}
+
+.main-screen .question-actions button {
+    margin: 0;
+
+    padding: 0.3rem 0.55rem;
+
+    font-size: 0.6rem;
+    font-weight: bold;
+
+    border-radius: 0.4rem;
+
+    white-space: nowrap;
+}
+
+.main-screen .question-actions button {
+    margin: 0;
+    padding: 0.35rem -1rem;
+
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    
+}
+
+.main-screen .question-with-image h2 {
+    font-size: 0.95rem;
+    margin: 0.35rem 0 0.4rem;
+}
+
+/* Feedback nas perguntas com imagem */
+.main-screen #question.question-with-image .answer-feedback {
+    position: absolute;
+
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.5rem;
+
+    width: auto;
+
+    margin: 0;
+    padding: 0.35rem 0.5rem;
+
+    font-size: 0.72rem;
+    line-height: 1.15;
+
+    box-sizing: border-box;
+    z-index: 6;
+}
+
+.main-screen #question.question-with-image .answer-feedback p {
+    margin: 0;
+}
+
+.main-screen .image-question-left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 0;
+}
+
+.main-screen .image-question-content {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+
+    gap: 0.8rem;
+
+    width: 100%;
+    height: 132px;
+
+    margin-top: 0.2rem;
+    align-items: stretch;
+     transform: translateX(-8px);
+}
+
+.main-screen #options-container.image-question-options {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, 1fr);
+
+    gap: 0.25rem;
+
+    height: 100%;
+    margin: 0;
+
+    align-self: stretch;
+}
+
+.main-screen #options-container.image-question-options .option {
+    width: 100%;
+    height: 100% !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0.2rem 0.5rem !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+
+    font-size: 0.68rem;
+}
+
+.main-screen #options-container.image-question-options .option p {
+    margin: 0 !important;
+    line-height: 1.1;
+}
+
+
+
+.main-screen .image-question-left .question-image {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: none;
+
+    object-fit: contain;
+
+    margin: 0;
+}
+
+/* Tela de mudança de nível dentro do telão central */
+.main-screen .difficulty-transition {
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 1rem 1.5rem;
+
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: transparent;
+
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+
+    text-align: center;
+}
+
+.main-screen .difficulty-transition .level-image {
+    width: 70px;
+    margin-bottom: 0.3rem;
+}
+
+.main-screen #options-container.image-question-options .option.hide {
+    display: none !important;
+}
+
+.main-screen .difficulty-transition .level-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.15rem;
+}
+
+.main-screen .difficulty-transition h2 {
+    font-size: 1.3rem;
+    margin: 0.25rem 0;
+}
+
+.main-screen .difficulty-transition .transition-message {
+    font-size: 0.8rem;
+    line-height: 1.3;
+
+    max-width: 80%;
+
+    margin: 0.3rem auto;
+}
+
+.main-screen .difficulty-transition .new-level {
+    margin: 0.4rem 0;
+    padding: 0.4rem 1.2rem;
+
+    background: rgba(20, 30, 100, 0.35);
+
+    border-radius: 0.5rem;
+}
+
+.main-screen .difficulty-transition .new-level span {
+    font-size: 0.55rem;
+    margin-bottom: 0.1rem;
+}
+
+.main-screen .difficulty-transition .new-level strong {
+    font-size: 1rem;
+}
+
+.main-screen .difficulty-transition .transition-button {
+    position: absolute;
+
+    right: -0.35rem;
+    bottom: 0.8rem;
+
+    left: auto;
+    top: auto;
+
+    transform: translateX(100%);
+
+    margin: 0;
+    padding: 0.35rem 0.6rem;
+    font-size: 0.62rem;
+    font-weight: bold;
+    border-radius: 0.45rem;
+    white-space: nowrap;
+}
+
+.main-screen #question.question-tip-open h2 {
+    font-size: 0.92rem;
+    line-height: 1.12;
+    margin: 0.2rem 0 0.3rem;
+}
+
+.main-screen #question.question-tip-open .question-tip {
+    font-size: 0.66rem;
+    line-height: 1.15;
+    padding: 0.28rem 0.45rem;
+    margin: 0.1rem 0 0.25rem;
+}
+
+.main-screen #question.question-tip-open #options-container {
+    gap: 0.22rem;
+    margin-top: 0.15rem;
+}
+
+.main-screen #question.question-tip-open .option {
+    min-height: 36px;
+    font-size: 0.72rem;
+}
+
+.main-screen .question-actions-left button.help-used {
+    background: #a61b1b !important;
+    border-color: #ff4747 !important;
+    color: #ffffff !important;
+    opacity: 0.75;
+    cursor: not-allowed;
+}
+
+.main-screen #question {
+    position: relative;
+}
+
+.main-screen .combo-badge {
+    position: absolute;
+    top: 3.2rem;
+    right: 1rem;
+
+    margin: 0;
+    padding: 0.25rem 0.55rem;
+
+    font-size: 0.65rem;
+    line-height: 1;
+
+    z-index: 5;
+}
+}
+
 
 @media (max-width: 768px) {
 
@@ -405,10 +720,6 @@
     order: 4;
 }
 
-.main-screen {
-    padding: 0.3rem;
-    overflow: hidden;
-}
 
     .main-screen {
         padding: 0.3rem;
