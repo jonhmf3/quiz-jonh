@@ -309,4 +309,116 @@ volta ao tamanho normal*/
 
 
 
+
+
 }
+
+/* ==========================================================================
+   🗣️ ESTILO GLOBAL DOS BALÕES DO APRESENTADOR (Notebook e Geral)
+   ========================================================================== */
+.balao-apresentador {
+    position: fixed !important; /* Tira de dentro da TV de vez */
+    
+    /* Alinha exatamente acima do boneco do apresentador no Notebook */
+    left: 17.5%; 
+    top: 48%; 
+    transform: translate(-50%, -100%);
+    
+    border-radius: 12px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+    z-index: 99999 !important; /* Fica na frente de tudo */
+    box-sizing: border-box;
+}
+
+/* 🟢 Balão se acertou: Verde Neon */
+.balao-acertou {
+    background: linear-gradient(135deg, #024825 0%, #00ff7f 100%) !important;
+    border: 2px solid #00ff7f !important;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+/* 🔴 Balão se errou: Vermelho */
+.balao-errou {
+    background: linear-gradient(135deg, #5c1414 0%, #ff4747 100%) !important;
+    border: 2px solid #ff4747 !important;
+    padding: 8px 14px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+/* 🟡 Balão se for Dica: Amarelo Adaptável para Textos Grandes */
+.balao-dica {
+    background: #ffcc00 !important; 
+    background-image: linear-gradient(135deg, #b38f00 0%, #ffcc00 100%) !important;
+    border: 2px solid #fff !important; 
+    color: #171426 !important; /* Texto escuro para leitura perfeita */
+    
+    /* Evita vazar na tela grande */
+    white-space: normal !important; 
+    text-wrap: pretty !important;
+    width: 260px !important; 
+    max-width: 35vw !important; 
+    height: auto !important; 
+    
+    padding: 10px 14px !important;
+    text-align: left !important; 
+    line-height: 1.3 !important;
+}
+
+/* 📐 Setinha padrão dos balões (baixo) */
+.balao-apresentador::after {
+    content: "";
+    position: absolute;
+    bottom: -8px; 
+    left: 50%;   
+    transform: translateX(-50%);
+    border-width: 8px 6px 0;
+    border-style: solid;
+    display: block;
+    width: 0;
+}
+.balao-acertou::after { border-color: #00ff7f transparent transparent !important; }
+.balao-errou::after { border-color: #ff4747 transparent transparent !important; }
+.balao-dica::after { border-color: #b38f00 transparent transparent !important; }
+
+
+/* ==========================================================================
+   📱 AJUSTE ESPECÍFICO PARA CELULAR DEITADO (LANDSCAPE)
+   ========================================================================== */
+@media (max-width: 932px) and (orientation: landscape) {
+    .balao-apresentador {
+        /* Move o balão para a posição ideal no celular */
+        left: 17% !important; 
+        top: 52% !important; 
+    }
+
+    /* Reduz tamanhos de texto no mobile */
+    .balao-acertou, .balao-errou {
+        font-size: 0.62rem !important;
+        padding: 5px 10px !important;
+    }
+
+    /* Encolhe a caixinha de dica no mobile sem quebrar */
+    .balao-dica {
+        width: 190px !important; 
+        max-width: 40vw !important;
+        font-size: 0.58rem !important;
+        padding: 6px 10px !important;
+        line-height: 1.2 !important;
+    }
+}
+
+/* ✂️ FORÇA A OPÇÃO EXCLUÍDA A SUMIR DA TELA EM TODOS OS CASOS */
+.main-screen .hide,
+.main-screen .option.hide,
+#options-container .hide,
+.hide {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+

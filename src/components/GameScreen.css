@@ -197,12 +197,12 @@
     position: absolute;
 
     left: 6.0%;
-    top: 30%;
+    top: 29%;
 
     width: 15%;
     height: 18%;
 
-    padding: 0.4rem;
+    padding: 0.2rem;
 
     background: transparent;
     border: none;
@@ -254,10 +254,11 @@
     position: relative;
     left: -10px;
 
-    font-size: 1rem;
+    font-size: 14px;
     line-height: 1.15;
 
     margin: 0.35rem 0 0.5rem;
+    margin-top: 0.1rem;
 }
 
 /* Ajuste fino da mensagem de acerto/erro */
@@ -267,19 +268,26 @@
 }
 
 .main-screen #options-container {
-    gap: 0.4rem;
-    margin-top: 0.5rem;
+     display: grid;
+     grid-template-columns: 1fr 1fr; 
+    gap: 4px 6px;
+    margin-top: 0.3rem;
 }
 
 .main-screen .option {
-    min-height: 46px;
-    font-size: 0.85rem;
+    min-height: 32px;
+    font-size: 0.75rem;
+     padding: 0px 0.5rem;
+      display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .main-screen #options-container,
 .main-screen .answer-feedback {
     position: relative;
-    left: -6px;
+   
+    margin: 3px;
 }
 
 
@@ -307,7 +315,7 @@
     position: absolute;
 
     right: 5%;
-    top: 29%;
+    top: 27%;
 
     width: 19%;
     height: 18%;
@@ -759,6 +767,47 @@
         padding: 1rem;
     }
 
+/* ---- REGRA PARA CELULAR DEITADO (LANDSCAPE) ---- */
+@media (max-width: 932px) and (orientation: landscape) {
+    
+    /* Cola as caixas sem imagem no celular deitado */
+    .main-screen #options-container:not(.image-question-options) {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; /* Mantém 2 colunas */
+        gap: 3px 6px !important;                     /* Cola na vertical (3px) */
+        margin-top: 0.2rem !important;               /* Puxa para perto da pergunta */
+    }
+
+    /* Achata as caixas para caberem na tela pequena do celular */
+    .main-screen #options-container:not(.image-question-options) .option {
+        height: 28px !important;       /* Caixas mais finas para não sumirem na TV */
+        min-height: 28px !important;
+        margin: 0 !important;          /* Zera o espaço que separava as caixas */
+        font-size: 0.7rem !important;  /* Diminui a fonte para caber na caixa menor */
+        padding: 0 0.3rem !important;
+    }
+}
 
 }
+
+/* Alvo direto e seguro apenas nas opções da tela sem imagem */
+.main-screen #options-container:not(.image-question-options) {
+    display: flex !important;
+    flex-wrap: wrap !important;       /* Permite criar as duas linhas */
+    justify-content: space-between !important;
+    gap: 6px !important;              /* Força a proximidade vertical e horizontal (6px) */
+    height: auto !important;          /* Deixa a altura livre para não cortar os botões */
+    margin-top: -10px !important;    /* Controla a distância do texto da pergunta */
+}
+
+/* Ajusta o tamanho das caixas individuais para que grudem perfeitamente */
+.main-screen #options-container:not(.image-question-options) .option {
+    width: 48% !important;            /* Garante que fiquem dois botões por linha */
+    height: 34px !important;          /* Deixa as caixas um pouco mais finas e elegantes */
+    min-height: 34px !important;
+    margin: 0 !important;             /* Mata qualquer margem antiga invisível */
+    padding: 0 0.4rem !important;
+    font-size: 0.75rem !important;    /* Ajusta o texto para o novo tamanho da caixa */
+}
+
 

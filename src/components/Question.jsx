@@ -194,12 +194,7 @@ return (
       {/* Pergunta */}
       <h2>{currentQuestion.question}</h2>
 
-      {/* Texto da dica */}
-{!quizState.answerSelected && quizState.help === "tip" && (
-  <p className="question-tip">
-    💡 {currentQuestion.tip}
-  </p>
-)}
+     
 
     {currentQuestion.image ? (
 
@@ -249,75 +244,97 @@ return (
 
 )}
 
-      {/* Feedback */}
-      {quizState.answerSelected && (
-        <div
-          className={`answer-feedback ${
-            acertou ? "feedback-correct" : "feedback-wrong"
-          }`}
-        >
-          {acertou ? (
-            <p>🎉 Mandou bem! Resposta correta!</p>
-          ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
-            <p>
-              ⏰ Tempo esgotado! A resposta correta era:{" "}
-              <strong>{currentQuestion.answer}</strong>
-            </p>
-          ) : (
-            <p>
-              😬 Quase! A resposta correta era:{" "}
-              <strong>{currentQuestion.answer}</strong>
-            </p>
-          )}
-        </div>
-      )}
+      
 
 
     </div>
 
-    {/* Botões fora do telão */}
-   <div className="question-actions">
+         {/* Botões fora do telão */}
+    <div className="question-actions">
 
-  <div className="question-actions-left">
+      <div className="question-actions-left">
+        {/* DICA */}
+        {!quizState.answerSelected && currentQuestion.tip && (
+          <button
+            className={quizState.help === "tip" ? "help-used" : ""}
+            disabled={quizState.help === "tip"}
+            onClick={() => dispatch({ type: "SHOW_TIP" })}
+          >
+            {quizState.help === "tip" ? "💡 Dica usada" : "💡 Dica"}
+          </button>
+        )}
 
-  {/* DICA */}
-  {!quizState.answerSelected && currentQuestion.tip && (
-    <button
-      className={quizState.help === "tip" ? "help-used" : ""}
-      disabled={quizState.help === "tip"}
-      onClick={() => dispatch({ type: "SHOW_TIP" })}
-    >
-      {quizState.help === "tip" ? "💡 Dica usada" : "💡 Dica"}
-    </button>
-  )}
+        {/* EXCLUIR */}
+        {!quizState.answerSelected && (
+          <button
+            className={quizState.removeUsed ? "help-used" : ""}
+            disabled={quizState.removeUsed}
+            onClick={() => dispatch({ type: "REMOVE_OPTION" })}
+          >
+            {quizState.removeUsed ? "✂️ Usado" : "✂️ Excluir"}
+          </button>
+        )}
+      </div>
 
-  {/* EXCLUIR */}
-  {!quizState.answerSelected && (
-    <button
-      className={quizState.removeUsed ? "help-used" : ""}
-      disabled={quizState.removeUsed}
-      onClick={() => dispatch({ type: "REMOVE_OPTION" })}
-    >
-      {quizState.removeUsed ? "✂️ Usado" : "✂️ Excluir"}
-    </button>
-  )}
+      <div className="question-actions-right">
+        {quizState.answerSelected && (
+          <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+            Continuar →
+          </button>
+        )}
+      </div>
 
-</div>
+      {/* 🗣️ BALÃO DO APRESENTADOR (Aparece apenas se a resposta foi selecionada) */}
+      {quizState.answerSelected && (
+        <div className={`balao-apresentador ${acertou ? "balao-acertou" : "balao-errou"}`}>
+          {acertou ? (
+            <span>🎉 Mandou bem! Resposta correta!</span>
+          ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
+            <span>⏰ Tempo esgotado!</span>
+          ) : (
+            <span>😬 Quase! Resposta incorreta.</span>
+          )}
+        </div>
+      )}
 
-  <div className="question-actions-right">
+    
 
-    {quizState.answerSelected && (
-      <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
-        Continuar →
-      </button>
-    )}
 
+      <div className="question-actions-right">
+        {quizState.answerSelected && (
+          <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
+            Continuar →
+          </button>
+        )}
+      </div>
+
+      {/* 🗣️ BALÃO 1: FEEDBACK DE ACERTO/ERRO (Aparece após responder) */}
+      {quizState.answerSelected && (
+        <div className={`balao-apresentador ${acertou ? "balao-acertou" : "balao-errou"}`}>
+          {acertou ? (
+           <span>🎉 Mandou bem! Resposta correta!</span>
+          ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
+            <span>⏰ Tempo esgotado!</span>
+          ) : (
+            <span>😬 Quase! Resposta incorreta.</span>
+          )}
+        </div>
+      )}
+
+      {/* 💡 NOVO BALÃO 2: DICA DO APRESENTADOR (Aparece ao clicar em Dica, antes de responder) */}
+      {!quizState.answerSelected && quizState.help === "tip" && (
+        <div className="balao-apresentador balao-dica">
+          <span>💡 {currentQuestion.tip}</span>
+        </div>
+      )}
+
+    </div>
   </div>
+);
+};
 
-</div>
+export default Question;
 
-  </div>
-)
-}
 
-export default Question
+
+
