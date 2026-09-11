@@ -758,8 +758,108 @@
     animation: girarCelular 2s infinite ease-in-out;
 }
 
+
+
+/* ==========================================================================
+   📟 AJUSTE ULTRA-COMPATÍVEL PARA TABLETS E TELAS DOBRÁVEIS (Deitados)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1280px) {
+    /* Ajusta o posicionamento da TV central */
+    .game-screen .main-screen {
+        left: 29% !important;
+        width: 42% !important;
+    }
+
+    /* Ajusta o tamanho da área útil da pergunta com imagem */
+    .game-screen .main-screen .image-question-content {
+        display: grid !important;
+        grid-template-columns: 1.1fr 0.9fr !important;
+        gap: 0.4rem !important;
+        height: 68% !important; /* Altura controlada para dar respiro na base */
+        align-items: stretch !important;
+    }
+
+    /* 🖼️ AJUSTE DA IMAGEM: Impede a foto de achatar ou esticar incorretamente */
+    .game-screen .main-screen .image-question-left .question-image {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important; /* Mantém a proporção correta da foto */
+        margin: 0 !important;
+    }
+
+    /* 🚨 PRIORIDADE MÁXIMA NO CONTAINER DE OPÇÕES */
+    .game-screen .main-screen #options-container.image-question-options {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(4, 1fr) !important; /* Força dividir o espaço vertical em 4 partes */
+        gap: 4px !important; /* Espaçamento controlado entre as caixas */
+        height: 100% !important;
+        margin: 0 !important;
+    }
+
+    /* ✂️ ZERA AS ALTURAS FIXAS DAS OPÇÕES PARA QUE ELAS CAIBAM VISIVELMENTE */
+    .game-screen .main-screen #options-container.image-question-options .option {
+        width: 100% !important;
+        height: 100% !important; /* Faz a caixa obedecer ao 1fr do grid pai */
+        min-height: 0px !important; /* DERROTA A ALTURA FIXA ANTIGA QUE FAZIA CORTAR A TELA */
+        max-height: none !important;
+        padding: 0px 6px !important;
+        font-size: 0.65rem !important; /* Letra ligeiramente menor para caber nomes longos */
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin: 0 !important;
+    }
+    
+    .game-screen .main-screen #options-container.image-question-options .option p {
+        margin: 0 !important;
+        line-height: 1.1 !important;
+    }
+}
+
 @keyframes girarCelular {
     0% { transform: rotate(0deg); }
     50% { transform: rotate(-90deg); } /* Simula o movimento de deitar */
     100% { transform: rotate(0deg); }
+}
+
+/* ==========================================================================
+   📟 BLINDAGEM FLUIDA DA IMAGEM PARA TABLETS E DOBRÁVEIS (Deitados)
+   ========================================================================== */
+@media (min-width: 769px) and (max-width: 1280px) {
+
+    /* 🎯 IGUAL AO CELULAR: Limita a altura do bloco para 68% da TV azul */
+    .main-screen .image-question-content {
+        display: grid !important;
+        grid-template-columns: 1.1fr 0.9fr !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+        height: 68% !important; 
+        margin-top: 0px !important;
+        align-items: center !important; 
+    }
+
+    /* 🎯 IGUAL AO CELULAR: Cria o teto invisível baseado na altura útil do aparelho */
+    .main-screen .image-question-left {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 32vh !important; /* A foto gigante NUNCA vai passar de 32% da altura de nenhum tablet */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+
+    /* 🎯 IGUAL AO CELULAR: Força o React a encolher a foto mantendo a proporção original */
+    .main-screen .image-question-left .question-image {
+        width: auto !important; 
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important; /* Encolhe perfeitamente a imagem sem achatar ou distorcer */
+        margin: 0 !important;
+    }
 }
