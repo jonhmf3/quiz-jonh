@@ -1,58 +1,30 @@
+/* ==========================================================================
+   📺 CONTEÚDO PRINCIPAL DO TELÃO (#question)
+   ========================================================================== */
 #question {
     width: 100%;
     max-width: none;
-
     text-align: center;
-
-    background: linear-gradient(
-        180deg,
-        #272044 0%,
-        #19162c 100%
-    );
-
+    background: linear-gradient(180deg, #272044 0%, #19162c 100%);
     border-radius: 1rem;
     padding: 2rem;
 }
 
-#question p{
-    margin-bottom: 1rem;
-}
+#question p { margin-bottom: 1rem; }
+#question h2 { margin-bottom: 2rem; }
+#question button { border: 2px solid #fff; margin: 0.5rem; }
 
-#question h2{
-    margin-bottom: 2rem;
-}
-
-
-
-#question button{
-    border: 2px solid #fff;
-    margin: 0.5rem
-}
-
+/* Imagens das perguntas */
 .question-image {
     width: 100%;
     max-width: 400px;
     border-radius: 0.5rem;
     margin-bottom: 1.5rem;
-    transition: filter 0.8s ease; /*faz a revelação acontecer suavemente em vez de a imagem simplesmente “piscar” de borrada para normal*/
+    transition: filter 0.8s ease;
 }
+.question-image-distorted { filter: blur(6px); }
 
-/*filter: blur(15px); que cria o borrado.*/
-/*Antes da resposta
-distorted: true
-+ answerSelected: false
-→ blur(15px)
-
-Jogador responde
-→ answerSelected passa a ter um valor
-→ classe de blur desaparece
-→ imagem fica nítida ✨*/
-
-.question-image-distorted {
-    filter: blur(6px); 
-}
-
-/*%*/
+/* Feedback visual de Acerto/Erro */
 .answer-feedback {
     margin: 1rem 0;
     padding: 0.8rem;
@@ -60,39 +32,16 @@ Jogador responde
     font-weight: bold;
     animation: feedbackPop 0.4s ease;
 }
-/*%*/
-.feedback-correct {
-    background-color: #00ff7f;
-    color: #1c1a27;
-}
-.feedback-wrong {
-    background-color: #ff4747;
-    color: #fff;
-}
+.feedback-correct { background-color: #00ff7f; color: #1c1a27; }
+.feedback-wrong { background-color: #ff4747; color: #fff; }
 
-/*% O @keyframes é a parte nova e divertida. 😄 Ele diz:
-
-começa pequeno e invisível
-        ↓
-cresce um pouquinho além do tamanho normal
-        ↓
-volta ao tamanho normal*/
 @keyframes feedbackPop {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    70% {
-        transform: scale(1.08);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+    0% { opacity: 0; transform: scale(0.8); }
+    70% { transform: scale(1.08); }
+    100% { opacity: 1; transform: scale(1); }
 }
 
+/* Elementos de Interface da TV */
 .combo-badge {
     display: inline-block;
     margin-bottom: 1rem;
@@ -104,7 +53,6 @@ volta ao tamanho normal*/
     animation: feedbackPop 0.4s ease;
 }
 
-/*# Isso vai fazer a barra avançar suavemente a cada pergunta.*/
 .progress-container {
     width: 100%;
     height: 8px;
@@ -113,13 +61,7 @@ volta ao tamanho normal*/
     overflow: hidden;
     margin-bottom: 1rem;
 }
-
-.progress-bar {
-    height: 100%;
-    background-color: #00ff7f;
-    border-radius: 999px;
-    transition: width 0.4s ease;
-}
+.progress-bar { height: 100%; background-color: #00ff7f; border-radius: 999px; transition: width 0.4s ease; }
 
 #options-container {
     display: grid;
@@ -128,88 +70,27 @@ volta ao tamanho normal*/
     margin-top: 1.5rem;
 }
 
+/* Transição de dificuldades */
 .difficulty-transition {
     max-width: 600px;
     margin: auto;
     padding: 2rem;
-
     text-align: center;
-
-    background: linear-gradient(
-        180deg,
-        #272044 0%,
-        #19162c 100%
-    );
-
+    background: linear-gradient(180deg, #272044 0%, #19162c 100%);
     border: 2px solid #8435de;
     border-radius: 1.2rem;
-
     box-shadow: 0 0 25px rgba(132, 53, 222, 0.3);
 }
+.level-image { width: 130px; max-width: 40%; margin-bottom: 0.7rem; }
+.level-label { display: block; font-size: 0.75rem; letter-spacing: 0.2rem; color: #aaa; }
+.difficulty-transition h2 { margin: 0.5rem 0 1rem; font-size: 2rem; color: #fff; }
+.transition-message { color: #ddd; line-height: 1.5; }
+.new-level { margin: 1.5rem 0; padding: 1rem; background-color: rgba(255, 255, 255, 0.05); border-radius: 0.8rem; }
+.new-level span { display: block; margin-bottom: 0.3rem; font-size: 0.8rem; color: #aaa; }
+.new-level strong { font-size: 1.5rem; color: #00ff7f; }
+.transition-button { padding: 0.8rem 1.8rem; border: none; border-radius: 0.6rem; background-color: #8435de; color: #fff; font-weight: bold; cursor: pointer; }
 
-.level-image {
-    width: 130px;
-    max-width: 40%;
-    margin-bottom: 0.7rem;
-}
-
-.level-label {
-    display: block;
-
-    font-size: 0.75rem;
-    letter-spacing: 0.2rem;
-
-    color: #aaa;
-}
-
-.difficulty-transition h2 {
-    margin: 0.5rem 0 1rem;
-
-    font-size: 2rem;
-    color: #fff;
-}
-
-.transition-message {
-    color: #ddd;
-    line-height: 1.5;
-}
-
-.new-level {
-    margin: 1.5rem 0;
-    padding: 1rem;
-
-    background-color: rgba(255, 255, 255, 0.05);
-
-    border-radius: 0.8rem;
-}
-
-.new-level span {
-    display: block;
-
-    margin-bottom: 0.3rem;
-
-    font-size: 0.8rem;
-    color: #aaa;
-}
-
-.new-level strong {
-    font-size: 1.5rem;
-    color: #00ff7f;
-}
-
-.transition-button {
-    padding: 0.8rem 1.8rem;
-
-    border: none;
-    border-radius: 0.6rem;
-
-    background-color: #8435de;
-    color: #fff;
-
-    font-weight: bold;
-    cursor: pointer;
-}
-
+/* Barra superior interna da TV */
 .question-topbar {
     width: 100%;
     display: grid;
@@ -219,206 +100,254 @@ volta ao tamanho normal*/
     margin-bottom: 0.8rem;
     font-size: 12px;
 }
+.question-counter { white-space: nowrap; font-size: 0.95rem; font-weight: 600; }
+.progress-inline { width: 100%; max-width: 470px; margin: 0; }
+.question-timer { white-space: nowrap; font-weight: bold; font-size: 0.95rem; padding: 0.35rem 0.7rem; background-color: rgba(28, 26, 39, 0.85); border-radius: 8px; line-height: 1; min-width: 58px; text-align: center; }
+.question-level { white-space: nowrap; font-weight: bold; font-size: 0.95rem; }
 
-.question-counter {
-    white-space: nowrap;
-    font-size: 0.95rem;
-    font-weight: 600;
-}
-
-.progress-inline {
-    width: 100%;
-    max-width: 470px;
-    margin: 0;
-}
-
-.question-timer {
-    white-space: nowrap;
-    font-weight: bold;
-    font-size: 0.95rem;
-    padding: 0.35rem 0.7rem;
-    background-color: rgba(28, 26, 39, 0.85);
-    border-radius: 8px;
-    line-height: 1;
-    min-width: 58px;
-    text-align: center;
-}
-
-.question-level {
-    white-space: nowrap;
-    font-weight: bold;
-    font-size: 0.95rem;
-}
-
+/* Mobile em Pé (Fallback Padrão) */
 @media (max-width: 768px) {
-
-    #question {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        padding: 1rem;
-
-        box-sizing: border-box;
-        overflow: hidden;
-    }
-
-    #question h2 {
-        font-size: 1.25rem;
-        margin-bottom: 1.2rem;
-    }
-
-     #options-container {
-        width: 100%;
-        max-width: 100%;
-
-        grid-template-columns: minmax(0, 1fr);
-    }
-
- .option {
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-
-        box-sizing: border-box;
-    }
-
-    .question-image {
-        max-height: 280px;
-        object-fit: cover;
-    }
-
-    #question > div:first-child {
-    font-size: 10px !important;
-    gap: 0.4rem;
-}
-
-#question > div:first-child span {
-    white-space: nowrap;
-}
-
-.question-tip {
-    margin: 0.4rem 0;
-    padding: 0.5rem;
-
-    background-color: rgba(132, 53, 222, 0.2);
-    border-radius: 0.4rem;
-
-    font-size: 0.8rem;
-}
-
-
-
-
-
+    #question { width: 100%; max-width: 100%; min-width: 0; padding: 1rem; box-sizing: border-box; overflow: hidden; }
+    #question h2 { font-size: 1.25rem; margin-bottom: 1.2rem; }
+    #options-container { width: 100%; max-width: 100%; grid-template-columns: minmax(0, 1fr); }
+    .option { width: 100%; max-width: 100%; min-width: 0; box-sizing: border-box; }
+    .question-image { max-height: 280px; object-fit: cover; }
+    #question > div:first-child { font-size: 10px !important; gap: 0.4rem; }
+    #question > div:first-child span { white-space: nowrap; }
+    .question-tip { margin: 0.4rem 0; padding: 0.5rem; background-color: rgba(132, 53, 222, 0.2); border-radius: 0.4rem; font-size: 0.8rem; }
 }
 
 /* ==========================================================================
-   🗣️ ESTILO GLOBAL DOS BALÕES DO APRESENTADOR (Notebook e Geral)
+   🗣️ ESTILO DOS BALÕES DO APRESENTADOR (Notebook / Rola com o palco)
    ========================================================================== */
+.question-wrapper {
+    position: relative !important; /* Cria a âncora fixa para os balões */
+}
+
 .balao-apresentador {
-    position: fixed !important; /* Tira de dentro da TV de vez */
+    position: absolute !important;
     
-    /* Alinha exatamente acima do boneco do apresentador no Notebook */
-    left: 17.5%; 
-    top: 48%; 
-    transform: translate(-50%, -100%);
+    /* 🎯 AJUSTADO: Sobe o balão e joga levemente mais para a esquerda no notebook */
+    left: -260px !important; 
+    top: 55% !important; /* Diminuído para o balão subir acima da cabeça do boneco */
     
+    transform: translateY(-50%) !important;
     border-radius: 12px;
     font-weight: bold;
     color: white;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
-    z-index: 99999 !important; /* Fica na frente de tudo */
+    z-index: 99999 !important;
     box-sizing: border-box;
 }
 
-/* 🟢 Balão se acertou: Verde Neon */
-.balao-acertou {
-    background: linear-gradient(135deg, #024825 0%, #00ff7f 100%) !important;
-    border: 2px solid #00ff7f !important;
-    padding: 8px 14px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-}
 
-/* 🔴 Balão se errou: Vermelho */
-.balao-errou {
-    background: linear-gradient(135deg, #5c1414 0%, #ff4747 100%) !important;
-    border: 2px solid #ff4747 !important;
-    padding: 8px 14px;
-    font-size: 0.75rem;
-    white-space: nowrap;
-}
+.balao-acertou { background: linear-gradient(135deg, #024825 0%, #00ff7f 100%) !important; border: 2px solid #00ff7f !important; padding: 8px 14px; font-size: 0.75rem; white-space: nowrap; }
+.balao-errou { background: linear-gradient(135deg, #5c1414 0%, #ff4747 100%) !important; border: 2px solid #ff4747 !important; padding: 8px 14px; font-size: 0.75rem; white-space: nowrap; }
 
-/* 🟡 Balão se for Dica: Amarelo Adaptável para Textos Grandes */
 .balao-dica {
     background: #ffcc00 !important; 
     background-image: linear-gradient(135deg, #b38f00 0%, #ffcc00 100%) !important;
     border: 2px solid #fff !important; 
-    color: #171426 !important; /* Texto escuro para leitura perfeita */
-    
-    /* Evita vazar na tela grande */
+    color: #171426 !important;
     white-space: normal !important; 
     text-wrap: pretty !important;
-    width: 260px !important; 
-    max-width: 35vw !important; 
+    width: 250px !important; 
     height: auto !important; 
-    
     padding: 10px 14px !important;
     text-align: left !important; 
     line-height: 1.3 !important;
+    left: -290px !important;
+    top: 110px !important;
+     
 }
 
-/* 📐 Setinha padrão dos balões (baixo) */
 .balao-apresentador::after {
-    content: "";
-    position: absolute;
-    bottom: -8px; 
-    left: 50%;   
-    transform: translateX(-50%);
-    border-width: 8px 6px 0;
-    border-style: solid;
-    display: block;
-    width: 0;
+    content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+    border-width: 8px 6px 0; border-style: solid; display: block; width: 0;
 }
 .balao-acertou::after { border-color: #00ff7f transparent transparent !important; }
 .balao-errou::after { border-color: #ff4747 transparent transparent !important; }
 .balao-dica::after { border-color: #b38f00 transparent transparent !important; }
 
+/* ✂️ SUPORTE PARA FUNÇÃO EXCLUIR */
+.main-screen .hide, .main-screen .option.hide, #options-container .hide, .hide {
+    display: none !important; visibility: hidden !important; opacity: 0 !important;
+}
 
 /* ==========================================================================
-   📱 AJUSTE ESPECÍFICO PARA CELULAR DEITADO (LANDSCAPE)
+   📱 🛑 CODE MASTER ATUALIZADO: CELULAR DEITADO / LANDSCAPE (Question.css)
    ========================================================================== */
 @media (max-width: 932px) and (orientation: landscape) {
-    .balao-apresentador {
-        /* Move o balão para a posição ideal no celular */
-        left: 17% !important; 
-        top: 52% !important; 
+    
+    /* Configuração padrão do telão */
+    .main-screen #question {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        height: 100% !important;
+        padding: 0.4rem 0.6rem !important;
+        box-sizing: border-box !important;
+        transform: translateX(-9px) !important; /* Mantém centralizado horizontalmente */
+        width: 101% !important;
     }
 
-    /* Reduz tamanhos de texto no mobile */
-    .balao-acertou, .balao-errou {
-        font-size: 0.62rem !important;
-        padding: 5px 10px !important;
+    /* Protege o padding ao abrir a dica */
+    .main-screen #question.question-tip-open {
+        padding: 0.4rem 0.6rem !important;
+        height: 100% !important;
     }
 
-    /* Encolhe a caixinha de dica no mobile sem quebrar */
-    .balao-dica {
-        width: 190px !important; 
-        max-width: 40vw !important;
-        font-size: 0.58rem !important;
-        padding: 6px 10px !important;
+    /* 📊 AJUSTE EXCLUSIVO DA TOPBAR (Desencostar do teto da TV) */
+    .question-topbar { 
+        margin-top: 0.15rem !important; /* Afasta ligeiramente da borda preta do teto */
+        margin-bottom: 0.1rem !important; 
+        gap: 0.4rem !important; 
+        width: 100% !important; 
+         padding-left: 10px !important; 
+        box-sizing: border-box !important;
+    }
+    .question-counter, .question-timer { font-size: 0.65rem !important; }
+    .question-timer { padding: 0.15rem 0.35rem !important; min-width: 38px !important; }
+
+    /* 📝 AJUSTE EXCLUSIVO DA PERGUNTA SEM IMAGEM (Ficar maior e imponente) */
+    .main-screen #question:not(.question-with-image) h2 {
+        font-size: 13px !important; /* Aumentado de 11px para 13px para dar mais destaque */
         line-height: 1.2 !important;
+        margin: 0.4rem 0 !important; /* Dá mais espaço em volta do texto */
+        text-align: center !important;
+        left: 0px !important;
+    }
+
+    /* Pergunta com imagem mantém o tamanho pequeno de segurança */
+    .main-screen #question.question-with-image h2 {
+        font-size: 11px !important;
+        line-height: 1.1 !important;
+        margin: 0.15rem 0 !important;
+        text-align: center !important;
+        left: 0px !important;
+    }
+
+    /* 🧱 LAYOUT 1: PERGUNTAS SEM IMAGEM (Preencher o espaço vazio e aumentar as caixas) */
+    .main-screen #options-container:not(.image-question-options) {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        gap: 6px !important; /* Espaçamento sutil e elegante entre as duas linhas de botões */
+        margin-top: 0px !important;
+        margin-bottom: 0.4rem !important; /* Garante espaço para o rodapé */
+        width: 100% !important;
+        left: 0px !important;
+    }
+
+    /* Caixas maiores, mais altas e imponentes na tela sem imagem */
+    .main-screen #options-container:not(.image-question-options) .option {
+        width: 49% !important; 
+        height: 31px !important; /* Aumentado de 25px para 31px para preencher o espaço vertical */
+        min-height: 31px !important;
+        font-size: 0.68rem !important; /* Letra ligeiramente maior acompanhando o botão */
+        margin: 0 !important;
+        padding: 0 0.3rem !important;
+    }
+
+    /* 🖼️ LAYOUT 2: PERGUNTAS COM IMAGEM (Permanece intacto e perfeito) */
+    .main-screen .image-question-content {
+        display: grid !important;
+        grid-template-columns: 1.15fr 0.85fr !important;
+        gap: 0.3rem !important;
+        width: 100% !important;
+        height: 70% !important;
+        margin-top: 0px !important;
+        align-items: stretch !important;
+          transform: translateX(4px) !important; 
+          
+    }
+
+    .main-screen #options-container.image-question-options {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        grid-template-rows: repeat(4, 1fr) !important;
+        gap: 2px !important;
+        height: 100% !important;
+        margin: 0 !important;
+    }
+
+    .main-screen #options-container.image-question-options .option {
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 1px 4px !important;
+        font-size: 0.58rem !important;
+        margin: 0 !important;
+    }
+
+    /* 🗣️ BALÕES MOBILE DEITADO */
+    .balao-apresentador {
+          position: absolute !important;
+    
+    /* 🎯 AJUSTADO: Move o balão mais para a esquerda e para baixo no Notebook */
+    left: -190px !important; /* Mudou de -110px para -160px para alinhar com a cabeça */
+    top: -350% !important;     /* Mudou de 50% para 65% para o balão descer e desgrudar do painel */
+    
+    transform: translateY(-50%) !important;
+    border-radius: 12px;
+    font-weight: bold;
+    color: white;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.6);
+    z-index: 99999 !important;
+    box-sizing: border-box;
+}
+   
+    .balao-acertou, .balao-errou { 
+        
+        font-size: 0.58rem !important; 
+        padding: 4px 8px !important; 
+    }
+
+    .balao-dica { 
+        
+        width: 165px !important; 
+        max-width: 40vw !important; 
+        font-size: 0.55rem !important; 
+        padding: 5px 8px !important; 
+        line-height: 1.15 !important; 
+        top: -500% !important;
+        left: -220px !important;
+    }
+
+    /* 🛠️ CONTROLES DE AÇÃO (Dica, Excluir, Continuar) NO RODAPÉ */
+    .main-screen .question-actions {
+        position: absolute !important;
+        bottom: -24px !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        z-index: 999 !important;
+    }
+
+    .main-screen .question-actions-left { 
+        
+        position: static !important; 
+        transform: none !important; 
+        display: flex !important; 
+        flex-direction: row !important; 
+        gap: 6px !important; 
+    }
+
+    .main-screen .question-actions-right { 
+        
+        position: static !important; 
+        transform: none !important; 
+    }
+
+    .main-screen .question-actions button { 
+        
+        padding: 2px 6px !important; 
+        font-size: 0.55rem !important; 
+        height: 18px !important; 
+        border-radius: 4px !important; 
+        margin: 0 !important; 
+        white-space: nowrap !important; 
     }
 }
-
-/* ✂️ FORÇA A OPÇÃO EXCLUÍDA A SUMIR DA TELA EM TODOS OS CASOS */
-.main-screen .hide,
-.main-screen .option.hide,
-#options-container .hide,
-.hide {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-

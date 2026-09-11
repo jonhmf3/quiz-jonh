@@ -1,4 +1,13 @@
 import marVermelho from "../img/mar-vermelho.jpg";
+import soyRebeldeTour from "../img/soy-rebelde-tour.jpg"; 
+import eliteWaySchool from "../img/elite-way-school-fachada.jpg"; 
+import miaColucci from "../img/mia-colucci.jpg";
+import arcaNoe from "../img/a-arca-de-noe.jpg";
+import cafueTaça from "../img/cafu.jpg";
+import danielCova from "../img/daniel.jpg";
+import estadioMaracana from "../img/maracana.jpg";
+import peleComemorando from "../img/pele.jpg";
+import sansaoLeao from "../img/sansão.jpg";
 
 const data = [
   {
@@ -11,6 +20,22 @@ const data = [
     tip: "É a única seleção que participou de todas as edições do torneio mundial.",
     difficulty: "Fácil"
   },
+
+  {
+  question: "Quem é o jogador histórico da Seleção Brasileira comemorando nesta imagem?",
+  image: peleComemorando, // Altere para a sua variável de import do Pelé
+  distorted: true,
+  options: [
+    "Garrincha",
+    "Pelé",
+    "Ronaldo Fenômeno",
+    "Romário"
+  ],
+  answer: "Pelé",
+  tip: "Ele é mundialmente conhecido como o Rei do Futebol.",
+  difficulty: "Fácil"
+},
+
   {
     question: "Quem é amplamente conhecido em todo o mundo como o 'Rei do Futebol'?",
     options: ["Diego Maradona", "Pelé", "Lionel Messi", "Cristiano Ronaldo"],
@@ -46,6 +71,21 @@ const data = [
     tip: "O atacante alemão ultrapassou o recorde do brasileiro Ronaldo justamente na Copa de 2014.",
     difficulty: "Média"
   },
+
+  {
+  question: "Qual estádio icônico do futebol mundial está representado nesta foto?",
+  image: estadioMaracana, // Altere para a sua variável de import do Maracanã
+  options: [
+    "Camp Nou",
+    "Santiago Bernabéu",
+    "Maracanã",
+    "Wembley"
+  ],
+  answer: "Maracanã",
+  tip: "Fica no Rio de Janeiro e foi palco da final da Copa de 1950 e 2014.",
+  difficulty: "Média"
+},
+
   {
     question: "Qual é o jogador com mais gols oficiais marcados na história do futebol mundial?",
     options: ["Pelé", "Lionel Messi", "Cristiano Ronaldo", "Romário"],
@@ -53,6 +93,22 @@ const data = [
     tip: "O atacante português é conhecido pela sua obsessão por recordes e pela icônica comemoração 'Siu!'.",
     difficulty: "Fácil"
   },
+
+{
+  question: "Qual craque ergueu a taça do Penta pelo Brasil nesta emblemática cena?",
+  image: cafueTaça, // Altere para a sua variável de import do Cafu
+  distorted: true,
+  options: [
+    "Roberto Carlos",
+    "Ronaldinho Gaúcho",
+    "Ronaldo",
+    "Cafu"
+  ],
+  answer: "Cafu",
+  tip: "Ele foi o capitão do time e subiu no palanque para erguer o troféu em 2002.",
+  difficulty: "Fácil"
+},
+
   {
     question: "Qual clube brasileiro é conhecido popularmente pelo apelido de 'Imortal Tricolor'?",
     options: ["São Paulo", "Fluminense", "Grêmio", "Bahia"],
@@ -206,22 +262,20 @@ const data = [
   {
     category: "Novela Rebelde (RBD)",
     questions: [
-      {
-  question: "Qual acontecimento bíblico está representado nesta imagem?",
-
-  image: marVermelho,
-distorted: true, //essa propriedade diz para o Question.jsx que ela participa do desafio de adivinhaçao
+     {
+  question: "Esta imagem mostra o palco de qual turnê histórica de retorno do RBD?",
+  image: soyRebeldeTour, // Altere para a sua variável de import do show
   options: [
-    "A Arca de Noé",
-    "A abertura do Mar Vermelho",
-    "A queda de Jericó",
-    "Davi contra Golias"
+    "Tour Generación",
+    "Empezar Desde Cero Tour",
+    "Tour Celestial",
+    "Soy Rebelde Tour"
   ],
-
-  answer: "A abertura do Mar Vermelho",
-
-  tip: "Esse acontecimento ocorreu durante a fuga do povo de Israel do Egito.",
+  answer: "Soy Rebelde Tour",
+  tip: "Foi a grande turnê realizada em estádios que marcou o reencontro do grupo.",
+  difficulty: "Média"
 },
+
       {
     question: "Qual é o nome do colégio interno de elite onde os protagonistas estudam na novela?",
     options: ["Las Encinas", "Elite Way School", "Liberty High", "Saint Mary School"],
@@ -230,7 +284,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     difficulty: "Fácil"
   },
 
- /* {
+  {
     question: "Quem são os seis integrantes oficiais da banda RBD?",
     options: [
       "Mía, Miguel, Roberta, Diego, Lupita e Giovanni",
@@ -263,6 +317,37 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Ela é uma artista famosa de música de estilo grupero e muito querida pelo público.",
     difficulty: "Fácil"
   },
+
+  {
+  question: "Qual dos seis integrantes do RBD está destacado nesta foto de uniforme?",
+  image: miaColucci, // Altere para a sua variável de import da Mia (Anahí)
+  distorted: true,
+  options: [
+    "Roberta Pardo",
+    "Lupita Fernandez",
+    "Mia Colucci",
+    "Vico Paz"
+  ],
+  answer: "Mia Colucci",
+  tip: "Sua marca registrada é usar uma estrela brilhante colada na testa.",
+  difficulty: "Fácil"
+},
+
+{
+  question: "Qual colégio fictício, cenário principal da novela, aparece nesta imagem?",
+  image: eliteWaySchool, // Altere para a sua variável de import do colégio
+  distorted: true,
+  options: [
+    "Las Encinas",
+    "Elite Way School",
+    "Constance Billard",
+    "Zurbarán"
+  ],
+  answer: "Elite Way School",
+  tip: "As iniciais do colégio são EWS e ele era um semi-internato de prestígio.",
+  difficulty: "Média"
+},
+
   {
     question: "O que os pais de Giovanni Méndez faziam para viver, o que ele tentava esconder a todo custo?",
     options: ["Eram faxineiros", "Trabalhavam em um açougue", "Eram feirantes", "Eram motoristas"],
@@ -333,7 +418,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Essa personagem marcou a estreia da atriz na televisão internacional.",
     difficulty: "Fácil"
   }
-       */
+       
  
     ],
   },
@@ -407,6 +492,22 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Ele era um jovem cativo na Babilônia que conseguia interpretar sonhos.",
     difficulty: "Fácil"
   },
+
+  {
+  question: "Qual famoso personagem da Bíblia está sendo retratado enfrentando um leão?",
+  image: sansaoLeao, // Altere para a sua variável de import do Sansão
+  options: [
+    "Davi",
+    "Sansão",
+    "Daniel",
+    "Salomão"
+  ],
+  answer: "Sansão",
+  tip: "O segredo de sua força extraordinária estava em seus cabelos.",
+   difficulty: "Fácil"
+
+},
+
   {
     question: "Qual profeta passou três dias e três noites dentro da barriga de um grande peixe?",
     options: ["Jonas", "Eliseu", "Amós", "Miqueias"],
@@ -435,6 +536,22 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Este milagre aconteceu durante uma festa de casamento em Caná da Galileia.",
     difficulty: "Média"
   },
+
+{
+  question: "Esta bela pintura representa qual famosa passagem bíblica do Antigo Testamento?",
+  image: arcaNoe, // Altere para a sua variável de import da Arca de Noé
+  distorted: true,
+  options: [
+    "A Arca de Noé",
+    "A Torre de Babel",
+    "A Criação do Mundo",
+    "A Destruição de Sodoma"
+  ],
+  answer: "A Arca de Noé",
+  tip: "Envolve um grande dilúvio e casais de todas as espécies de animais.",
+  difficulty: "Fácil"
+},
+
   {
     question: "Qual amigo de Jesus havia morrido e estava no túmulo há quatro dias antes de ser ressuscitado?",
     options: ["Lázaro", "Bartolomeu", "Nicodemos", "Zaqueu"],
@@ -456,6 +573,21 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Jesus já havia previsto essa negação durante a Última Ceia.",
     difficulty: "Fácil"
   },
+{
+  question: "Quem é o jovem profeta representado nesta clássica pintura na cova dos leões?",
+  image: danielCova, // Altere para a sua variável de import do Daniel
+  distorted: true,
+  options: [
+    "Daniel",
+    "José do Egito",
+    "Ezequiel",
+    "Isaías"
+  ],
+  answer: "Daniel",
+  tip: "Ele foi lançado na cova por se recusar a parar de orar ao Deus verdadeiro.",
+  difficulty: "Fácil"
+},
+
   {
     question: "Quem era o governador romano que lavou as mãos e condenou Jesus à crucificação?",
     options: ["Herodes", "Pôncio Pilatos", "César Augusto", "Félix"],

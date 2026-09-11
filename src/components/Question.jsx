@@ -94,11 +94,6 @@ if (showTransition) {
   return (
     <div className="difficulty-transition">
 
-      <img
-        src={Level}
-        alt="Mudança de nível"
-        className="level-image"
-      />
 
       <span className="level-label">
         LEVEL UP
@@ -181,15 +176,15 @@ return (
 
     
 
-      {/* Combo */}
-      {quizState.combo >= 2 && (
+     {/* Combo */}
+     {/*} {quizState.combo >= 2 && (
         <div
           key={quizState.combo}
           className="combo-badge"
         >
           🔥 Combo x{quizState.combo}
         </div>
-      )}
+      )}  */}
 
       {/* Pergunta */}
       <h2>{currentQuestion.question}</h2>
@@ -249,7 +244,7 @@ return (
 
     </div>
 
-         {/* Botões fora do telão */}
+          {/* 🛠️ APENAS UMA ESTRUTURA DE BOTÕES E UM BALÃO NO FINAL */}
     <div className="question-actions">
 
       <div className="question-actions-left">
@@ -276,6 +271,7 @@ return (
         )}
       </div>
 
+      {/* 🚀 BOTÃO ÚNICO DE CONTINUAR */}
       <div className="question-actions-right">
         {quizState.answerSelected && (
           <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
@@ -284,7 +280,7 @@ return (
         )}
       </div>
 
-      {/* 🗣️ BALÃO DO APRESENTADOR (Aparece apenas se a resposta foi selecionada) */}
+      {/* 🗣️ UM ÚNICO BALÃO DE FEEDBACK DO APRESENTADOR */}
       {quizState.answerSelected && (
         <div className={`balao-apresentador ${acertou ? "balao-acertou" : "balao-errou"}`}>
           {acertou ? (
@@ -297,31 +293,7 @@ return (
         </div>
       )}
 
-    
-
-
-      <div className="question-actions-right">
-        {quizState.answerSelected && (
-          <button onClick={() => dispatch({ type: "CHANGE_QUESTION" })}>
-            Continuar →
-          </button>
-        )}
-      </div>
-
-      {/* 🗣️ BALÃO 1: FEEDBACK DE ACERTO/ERRO (Aparece após responder) */}
-      {quizState.answerSelected && (
-        <div className={`balao-apresentador ${acertou ? "balao-acertou" : "balao-errou"}`}>
-          {acertou ? (
-           <span>🎉 Mandou bem! Resposta correta!</span>
-          ) : quizState.answerSelected === "TEMPO_ESGOTADO_ERRADO" ? (
-            <span>⏰ Tempo esgotado!</span>
-          ) : (
-            <span>😬 Quase! Resposta incorreta.</span>
-          )}
-        </div>
-      )}
-
-      {/* 💡 NOVO BALÃO 2: DICA DO APRESENTADOR (Aparece ao clicar em Dica, antes de responder) */}
+      {/* 💡 UM ÚNICO BALÃO DE DICA DO APRESENTADOR */}
       {!quizState.answerSelected && quizState.help === "tip" && (
         <div className="balao-apresentador balao-dica">
           <span>💡 {currentQuestion.tip}</span>
