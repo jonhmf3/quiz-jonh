@@ -39,27 +39,105 @@
     border-radius: 0; 
 }
 
-.player-name { font-size: 1.2rem; font-weight: bold; color: #00ff7f; margin-top: 0.4rem; }
-.ranking-category { font-size: 0.8rem; opacity: 0.7; margin-bottom: 1rem; }
+.player-name { 
+    
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    color: #00ff7f; 
+    margin-top: 0.4rem; 
+}
 
-.ranking-list-game { list-style: none; padding: 0; margin: 0; }
+.ranking-category { 
+    
+    font-size: 0.8rem; 
+    opacity: 0.7; 
+    margin-bottom: 1rem; 
+}
+
+.ranking-list-game { 
+    
+    list-style: none; 
+    padding: 0; 
+    margin: 0; 
+}
+
 .ranking-list-game li {
-    display: flex; justify-content: space-between; align-items: center;
-    gap: 0.5rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.85rem;
-}
-.ranking-list-game li span { text-align: left; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
-.ranking-list-game li strong { color: #00ff7f; }
-.current-player-ranking { background-color: rgba(132, 53, 222, 0.25); border-radius: 0.5rem; font-weight: bold; }
-.ranking-separator { justify-content: center !important; opacity: 0.5; border-bottom: none !important; }
 
-.player-stats { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1rem; }
-.player-stat {
-    display: flex; justify-content: space-between; align-items: center; gap: 0.7rem;
-    padding: 0.6rem 0.7rem; background-color: rgba(255, 255, 255, 0.05); border-radius: 0.6rem; font-size: 0.85rem;
+    display: flex; 
+    justify-content: 
+    space-between; 
+    align-items: center;
+    gap: 0.5rem; 
+    padding: 0.6rem 0; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+    font-size: 0.85rem;
 }
-.player-stat span { opacity: 0.8; }
-.player-stat strong { color: #024825; }
-.ranking-toggle { display: none; }
+
+.ranking-list-game li span { 
+    
+    text-align: left; 
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    padding-left: 15px !important;   /* Afasta o nome/medalha da borda esquerda */
+    padding-right: 12px !important;
+    
+ }
+
+.ranking-list-game li strong { 
+    
+    color: #00ff7f; 
+     padding-left: 8px !important;   /* Afasta o nome/medalha da borda esquerda */
+    padding-right: 22px !important;
+}
+
+.current-player-ranking { 
+    
+    background-color: rgba(132, 53, 222, 0.25); 
+    border-radius: 0.5rem; 
+    font-weight: bold; 
+}
+
+.ranking-separator { 
+    
+    justify-content: center !important; 
+    opacity: 0.5; 
+    border-bottom: none !important; 
+}
+
+.player-stats { 
+    
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.7rem;
+    margin-top: 1rem; 
+
+}
+
+.player-stat {
+   
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 0.7rem;
+    padding: 0.6rem 0.7rem; 
+    background-color: rgba(240, 15, 15, 0.05); border-radius: 0.6rem; font-size: 0.85rem;
+}
+
+.player-stat span { 
+    
+    opacity: 0.8; 
+}
+
+.player-stat strong { 
+    
+    color: #fff; 
+}
+
+.ranking-toggle { 
+    
+    display: none; 
+}
 
 /* ==========================================================================
    💻 LAYOUT DO PALCO COMPLETO (Notebooks e Telas Grandes)
@@ -116,7 +194,7 @@
     }
 
     .player-panel .player-stat { 
-        padding: 0.05rem 0.45rem; 
+        padding: 0.05rem 0.5rem; 
         font-size: 0.52rem; 
         line-height: 1; 
         background: transparent; }
@@ -615,6 +693,73 @@
       
     }
 
-            }
+            
+    
+}
+
 
     }
+
+    /* ==========================================================================
+   🔒 TELA DE BLOQUEIO DE ORIENTAÇÃO (Forçar celular deitado)
+   ========================================================================== */
+
+/* Por padrão, a tela de bloqueio fica totalmente escondida (PC e Celular Deitado) */
+.bloqueio-orientacao {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #1e1b30 0%, #0d0b16 100%);
+    z-index: 9999999 !important; /* Fica acima de absolutamente tudo */
+    color: #fff;
+    font-family: sans-serif;
+}
+
+/* 📱 ATIVAÇÃO: Se for um celular/tablet E estiver na vertical (Portrait) */
+@media (max-width: 1024px) and (orientation: portrait) {
+    .bloqueio-orientacao {
+        display: flex !important; /* Ativa o bloqueio instantaneamente */
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Esconde o resto do seu jogo por segurança para não bugar o fundo */
+    .game-screen, #welcome, #gameover {
+        display: none !important;
+    }
+}
+
+/* Estilização interna do aviso de girar */
+.bloqueio-conteúdo {
+    text-align: center;
+    padding: 2rem;
+    max-width: 280px;
+}
+
+.bloqueio-conteúdo h2 {
+    font-size: 1.3rem;
+    color: #00ff7f; /* Verde neon do seu jogo */
+    margin: 1rem 0 0.5rem;
+}
+
+.bloqueio-conteúdo p {
+    font-size: 0.85rem;
+    color: #aaa;
+    line-height: 1.4;
+}
+
+/* Animação do ícone girando para chamar atenção */
+.icone-girar {
+    font-size: 3rem;
+    display: inline-block;
+    animation: girarCelular 2s infinite ease-in-out;
+}
+
+@keyframes girarCelular {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(-90deg); } /* Simula o movimento de deitar */
+    100% { transform: rotate(0deg); }
+}

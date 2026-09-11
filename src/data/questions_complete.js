@@ -64,13 +64,7 @@ const data = [
     tip: "O torneio foi sediado no próprio Brasil e a partida aconteceu no estádio do Mineirão.",
     difficulty: "Fácil"
   },
-  {
-    question: "Quem é o maior artilheiro da história das Copas do Mundo masculinas, com 16 gols marcados?",
-    options: ["Miroslav Klose", "Ronaldo Fenômeno", "Gerd Müller", "Just Fontaine"],
-    answer: "Miroslav Klose",
-    tip: "O atacante alemão ultrapassou o recorde do brasileiro Ronaldo justamente na Copa de 2014.",
-    difficulty: "Média"
-  },
+  
 
   {
   question: "Qual estádio icônico do futebol mundial está representado nesta foto?",
@@ -109,20 +103,8 @@ const data = [
   difficulty: "Fácil"
 },
 
-  {
-    question: "Qual clube brasileiro é conhecido popularmente pelo apelido de 'Imortal Tricolor'?",
-    options: ["São Paulo", "Fluminense", "Grêmio", "Bahia"],
-    answer: "Grêmio",
-    tip: "Este clube tradicional do Rio Grande do Sul manda seus jogos em Porto Alegre.",
-    difficulty: "Média"
-  },
-  {
-    question: "Qual jogador argentino ficou famoso pelo gol histórico conhecido como 'A Mão de Deus' (La Mano de Dios)?",
-    options: ["Diego Maradona", "Lionel Messi", "Gabriel Batistuta", "Mario Kempes"],
-    answer: "Diego Maradona",
-    tip: "O lance aconteceu nas quartas de final da Copa do Mundo de 1986 contra a Inglaterra.",
-    difficulty: "Fácil"
-  },
+ 
+  
   {
     question: "Qual equipe conquistou a primeira edição da Copa Libertadores da América, em 1960?",
     options: ["Santos", "Peñarol", "Olimpia", "Boca Juniors"],
@@ -130,13 +112,7 @@ const data = [
     tip: "É um dos clubes mais tradicionais do Uruguai e superou o Olimpia na grande final.",
     difficulty: "Difícil"
   },
-  {
-    question: "Qual estádio brasileiro é historicamente conhecido como o 'Templo do Futebol'?",
-    options: ["Morumbi", "Maracanã", "Mineirão", "Beira-Rio"],
-    answer: "Maracanã",
-    tip: "Localizado no Rio de Janeiro, foi o palco das finais das Copas do Mundo de 1950 e 2014.",
-    difficulty: "Fácil"
-  },
+ 
   {
     question: "Quem é a maior artilheira da história das Copas do Mundo de futebol feminino?",
     options: ["Marta", "Abby Wambach", "Megan Rapinoe", "Birgit Prinz"],
@@ -151,20 +127,8 @@ const data = [
     tip: "O lendário técnico escocês foi condecorado como 'Sir' pela rainha da Inglaterra.",
     difficulty: "Média"
   },
-  {
-    question: "Qual país africano fez história ao se tornar o primeiro do continentee a chegar a uma semifinal de Copa do Mundo?",
-    options: ["Camarões", "Senegal", "Gana", "Marrocos"],
-    answer: "Marrocos",
-    tip: "O feito inédito e emocionante aconteceu na Copa do Mundo realizada no Catar em 2022.",
-    difficulty: "Média"
-  },
-  {
-    question: "Qual time inglês conseguiu a façanha de vencer a Premier League de forma invicta na temporada 2003/2004?",
-    options: ["Manchester City", "Chelsea", "Arsenal", "Liverpool"],
-    answer: "Arsenal",
-    tip: "O elenco comandado por Arsène Wenger ficou conhecido pelo apelido de 'Os Invencíveis'.",
-    difficulty: "Média"
-  },
+  
+ 
   {
     question: "Quem era o capitão da Seleção Brasileira que ergueu a taça do pentacampeonato mundial em 2002?",
     options: ["Cafu", "Ronaldo", "Roberto Carlos", "Rivaldo"],
@@ -179,13 +143,8 @@ const data = [
     tip: "Substituiu a antiga Jules Rimet, que ficou em posse definitiva do Brasil após o tricampeonato em 1970.",
     difficulty: "Média"
   },
-  {
-    question: "Qual tradicional clube italiano é conhecido mundialmente pelo apelido de 'Velha Senhora' (La Vecchia Signora)?",
-    options: ["Inter de Milão", "Milan", "Juventus", "Roma"],
-    answer: "Juventus",
-    tip: "Sediado em Turim, o clube veste listras verticais em preto e branco.",
-    difficulty: "Média"
-  },
+  
+  
   {
     question: "Qual jogador brasileiro venceu o prêmio de Melhor do Mundo da FIFA em 2007, sendo o último antes da era Messi/Cristiano Ronaldo?",
     options: ["Ronaldinho Gaúcho", "Kaká", "Neymar", "Adriano Imperador"],
@@ -200,13 +159,7 @@ const data = [
     tip: "A final histórica foi disputada no Estádio Centenário, em Montevidéu.",
     difficulty: "Média"
   },
-  {
-    question: "Quantos jogadores de cada equipe podem ficar dentro de campo no início de uma partida oficial de futebol?",
-    options: ["10", "12", "11", "9"],
-    answer: "11",
-    tip: "Esse número já inclui obrigatoriamente o goleiro de cada time.",
-    difficulty: "Fácil"
-  },
+  
   {
     question: "Qual clube brasileiro protagonizou a famosa 'Democracia Corintiana' na década de 1980?",
     options: ["Corinthians", "Palmeiras", "Santos", "Flamengo"],
@@ -228,13 +181,7 @@ const data = [
     tip: "A regra visa proteger a integridade física dos atletas contra condutas violentas.",
     difficulty: "Fácil"
   },
-  {
-    question: "Qual clube alemão domina historicamente a Bundesliga e manda seus jogos na moderna Allianz Arena?",
-    options: ["Borussia Dortmund", "Bayern de Munique", "Bayer Leverkusen", "Schalke 04"],
-    answer: "Bayern de Munique",
-    tip: "É a equipe mais rica e vitoriosa do futebol germânico.",
-    difficulty: "Fácil"
-  },
+ 
   {
     question: "De quantos em quantos anos é realizada a Copa do Mundo de futebol da FIFA?",
     options: ["De 2 em 2 anos", "De 3 em 3 anos", "De 4 em 4 anos", "De 5 em 5 anos"],
@@ -249,13 +196,7 @@ const data = [
     tip: "A partida marcava a despedida oficial dos gramados daquele que foi um dos maiores camisas 10 da França.",
     difficulty: "Fácil"
   },
-  {
-    question: "Qual clube espanhol tem como lema a famosa frase 'Més que un club' (Mais que um clube)?",
-    options: ["Real Madrid", "Atlético de Madrid", "Barcelona", "Sevilla"],
-    answer: "Barcelona",
-    tip: "O lema reflete a forte ligação identitária e cultural do time com a região da Catalunha.",
-    difficulty: "Média"
-  },
+  
     ],
   },
 
@@ -457,13 +398,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Ele era um homem justo em sua geração e choveu por 40 dias e 40 noites.",
     difficulty: "Fácil"
   },
-  {
-    question: "Qual personagem bíblico foi vendido como escravo por seus próprios irmãos e levado para o Egito?",
-    options: ["José", "Benjamin", "Davi", "Sansão"],
-    answer: "José",
-    tip: "Ele ganhou de seu pai, Jacó, uma túnica colorida de mangas compridas.",
-    difficulty: "Fácil"
-  },
+ 
   {
     question: "Quem foi o líder escolhido por Deus para libertar o povo de Israel da escravidão no Egito?",
     options: ["Josué", "Gideão", "Moisés", "Arão"],
@@ -478,20 +413,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Ele mais tarde se tornou o rei mais famoso e amado de Israel.",
     difficulty: "Fácil"
   },
-  {
-    question: "Quem é conhecido na Bíblia como o homem mais sábio que já existiu?",
-    options: ["Salomão", "Daniel", "Ezequiel", "Jó"],
-    answer: "Salomão",
-    tip: "Ele era filho do Rei Davi e construiu o primeiro Templo de Jerusalém.",
-    difficulty: "Fácil"
-  },
-  {
-    question: "Qual profeta foi lançado na cova dos leões por se recusar a parar de orar a Deus?",
-    options: ["Elias", "Jeremias", "Daniel", "Isaías"],
-    answer: "Daniel",
-    tip: "Ele era um jovem cativo na Babilônia que conseguia interpretar sonhos.",
-    difficulty: "Fácil"
-  },
+  
 
   {
   question: "Qual famoso personagem da Bíblia está sendo retratado enfrentando um leão?",
@@ -522,13 +444,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "A cidade fica na Judeia e cumpriu a profecia do profeta Miqueias.",
     difficulty: "Fácil"
   },
-  {
-    question: "Qual era a profissão de base de Pedro, Tiago e João antes de seguirem a Jesus?",
-    options: ["Carpinteiros", "Pescadores", "Cobradores de impostos", "Pastores"],
-    answer: "Pescadores",
-    tip: "Jesus disse que os transformaria em 'pescadores de homens'.",
-    difficulty: "Média"
-  },
+ 
   {
     question: "Qual foi o primeiro milagre público realizado por Jesus registrado nos Evangelhos?",
     options: ["Multiplicação dos pães", "Transformação de água em vinho", "Cura de um cego", "Ressurreição de Lázaro"],
@@ -552,13 +468,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
   difficulty: "Fácil"
 },
 
-  {
-    question: "Qual amigo de Jesus havia morrido e estava no túmulo há quatro dias antes de ser ressuscitado?",
-    options: ["Lázaro", "Bartolomeu", "Nicodemos", "Zaqueu"],
-    answer: "Lázaro",
-    tip: "Ele era irmão de Marta e de Maria, e morava na aldeia de Betânia.",
-    difficulty: "Fácil"
-  },
+ 
   {
     question: "Qual discípulo traiu Jesus por trinta moedas de prata?",
     options: ["Tomé", "Judas Iscariotes", "Simão, o Zelote", "Tadeu"],
@@ -588,13 +498,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
   difficulty: "Fácil"
 },
 
-  {
-    question: "Quem era o governador romano que lavou as mãos e condenou Jesus à crucificação?",
-    options: ["Herodes", "Pôncio Pilatos", "César Augusto", "Félix"],
-    answer: "Pôncio Pilatos",
-    tip: "Ele perguntou à multidão se preferiam soltar Jesus ou o criminoso Barrabás.",
-    difficulty: "Média"
-  },
+  
   {
     question: "Qual perseguidor de cristãos viu uma luz brilhante no caminho de Damasco e se tornou o maior missionário do Novo Testamento?",
     options: ["Saulo (Paulo)", "Barnabé", "Estêvão", "Lucas"],
@@ -623,34 +527,10 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Eles servem como a base moral das leis divinas e começam com o mandamento de amar a Deus sobre todas as coisas.",
     difficulty: "Fácil"
   },
-  {
-    question: "Quem foi a primeira mulher criada por Deus, de acordo com o relato do Éden?",
-    options: ["Sara", "Eva", "Rute", "Ester"],
-    answer: "Eva",
-    tip: "O nome dela significa 'mãe de todos os seres viventes'.",
-    difficulty: "Fácil"
-  },
-  {
-    question: "Qual homem bíblico era conhecido por sua força extraordinária ligada ao seu cabelo comprido?",
-    options: ["Gideão", "Sansão", "Saul", "Absalão"],
-    answer: "Sansão",
-    tip: "Ele foi um dos juízes de Israel e acabou sendo traído por uma mulher chamada Dalila.",
-    difficulty: "Fácil"
-  },
-  {
-    question: "Qual rainha judia arriscou sua vida para salvar seu povo de um decreto de destruição no Império Persa?",
-    options: ["Ester", "Jezabel", "Vasti", "Atalia"],
-    answer: "Ester",
-    tip: "Ela foi criada por seu primo Mardoqueu e venceu um concurso de beleza para se tornar rainha.",
-    difficulty: "Média"
-  },
-  {
-    question: "De acordo com o Novo Testamento, qual é o último livro da Bíblia?",
-    options: ["Romanos", "Hebreus", "Judas", "Apocalipse"],
-    answer: "Apocalipse",
-    tip: "O nome vem do grego e significa 'revelação'; foi escrito pelo apóstolo João na ilha de Patmos.",
-    difficulty: "Fácil"
-  },
+ 
+ 
+ 
+  
   {
     question: "Qual jovem foi jogado na fornalha ardente com seus amigos Sadraque e Abede-Nego, mas saiu sem nenhuma queimadura?",
     options: ["Mesaque", "Daniel", "Neemias", "Esdras"],
@@ -665,13 +545,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Ele vivia no deserto, vestia pele de camelo e se alimentava de gafanhotos e mel silvestre.",
     difficulty: "Fácil"
   },
-  {
-    question: "Qual mulher estrangeira decidiu não abandonar sua sogra Noemi e disse a famosa frase: 'O teu povo será o meu povo'?",
-    options: ["Rute", "Orfa", "Raabe", "Lia"],
-    answer: "Rute",
-    tip: "Ela era moabita e acabou se tornando bisavó do Rei Davi.",
-    difficulty: "Média"
-  },
+  
   {
     question: "Qual mar foi milagrosamente aberto por Deus para que o povo de Israel passasse a pé enxuto fugindo dos egípcios?",
     options: ["Mar Morto", "Mar Vermelho", "Mar da Galileia", "Mar Mediterrâneo"],
@@ -686,13 +560,7 @@ distorted: true, //essa propriedade diz para o Question.jsx que ela participa do
     tip: "Seu sucessor espiritual, que viu o acontecimento, foi o profeta Eliseu.",
     difficulty: "Difícil"
   },
-  {
-    question: "Qual foi o homem que viveu mais tempo registrado na Bíblia, alcançando a idade de 969 anos?",
-    options: ["Matusalém", "Adão", "Noé", "Jarede"],
-    answer: "Matusalém",
-    tip: "Ele era avô de Noé e filho de Enoque.",
-    difficulty: "Média"
-  },
+  
   {
     question: "Qual é o menor livro do Antigo Testamento, contendo apenas um capítulo com 21 versículos?",
     options: ["Naum", "Obadias", "Ageu", "Habacuque"],

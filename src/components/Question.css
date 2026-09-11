@@ -257,7 +257,7 @@
         width: 100% !important;
         height: 70% !important;
         margin-top: 0px !important;
-        align-items: stretch !important;
+        align-items: center !important;
           transform: translateX(4px) !important; 
           
     }
@@ -351,3 +351,30 @@
         white-space: nowrap !important; 
     }
 }
+
+/* ==========================================================================
+   🔏 BLINDAGEM DA IMAGEM NO MOBILE DEITADO (Adicione no fim do Question.css)
+   ========================================================================== */
+@media (max-width: 932px) and (orientation: landscape) {
+    /* Força o container da esquerda a nunca passar da altura útil da TV */
+    .main-screen .image-question-left {
+        width: 100% !important;
+        height: 100% !important;
+        max-height: 32vh !important; /* 🎯 TRAVA A ALTURA DA FOTO NO CELULAR G42 */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+    }
+
+    /* Obriga a foto (RBD, Pelé, etc) a encolher e caber nessa caixinha travada */
+    .main-screen .image-question-left .question-image {
+        width: auto !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+        object-fit: contain !important; /* Mantém a proporção da foto sem achatar */
+        margin: 0 !important;
+    }
+}
+

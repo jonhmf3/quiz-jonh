@@ -1,17 +1,58 @@
-#welcome{
+/* ==========================================================================
+   🎮 ESTILOS BASE - TELA DE INÍCIO (Notebook e Mobile em Pé)
+   ========================================================================== */
+#welcome {
     text-align: center;
     max-width: 500px;
+    margin: 0 auto;
 }
 
 #welcome h2,
-#welcome p{
+#welcome p {
     margin-bottom: 1rem;
 }
 
-#welcome p{
+#welcome p {
     color: #8435de;
 }
 
-#welcome img{
+#welcome img {
     margin-top: 2rem;
+}
+
+/* ==========================================================================
+   📱 AJUSTE EXCLUSIVO PARA CELULAR DEITADO (LANDSCAPE)
+   ========================================================================== */
+@media (max-width: 932px) and (orientation: landscape) {
+    #welcome {
+        max-width: 420px !important; /* Mantém o container compacto dentro da TV */
+        padding: 0.2rem 0.5rem !important;
+    }
+
+    /* Reduz os espaçamentos das letras para caber na tela achatada */
+    #welcome h2 {
+        font-size: 1.2rem !important; /* Título menor e elegante */
+        margin-bottom: 0.2rem !important;
+    }
+
+    #welcome p {
+        font-size: 0.75rem !important; /* Texto de descrição menor */
+        margin-bottom: 0.3rem !important;
+    }
+
+    /* 🖼️ ENCOLHE A LOGO/IMAGEM DE ABERTURA NO MOBILE DEITADO */
+    #welcome img {
+        margin-top: 0.2rem !important; /* Remove o empurrão grande do teto */
+        max-height: 55px !important;    /* Limita o tamanho da logo para não vazar o botão iniciar */
+        width: auto !important;
+        object-fit: contain !important;
+    } 
+
+    /* Ajusta o tamanho do botão de iniciar se ele estiver nesta tela */
+    #welcome button {
+        padding: 0.35rem 1rem !important;
+        font-size: 0.7rem !important;
+        height: 26px !important;
+        margin-top: 2rem !important;
+    }
 }

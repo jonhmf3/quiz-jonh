@@ -119,10 +119,17 @@ const nivelAtual =
     {quizState.selectedCategory}
   </p>
 
-  {ranking.length === 0 ? (
+  {/* 🎯 ALTERADO TEMPORARIAMENTE PARA PULAR O CARREGAMENTO */}
+{false ? (
+  <p>Carregando...</p>
+) : (
+  <ol className="ranking-list-game">
+
+
+  {/*{ranking.length === 0 ? (
     <p>Carregando...</p>
   ) : (
-    <ol className="ranking-list-game">
+    <ol className="ranking-list-game">*/}
 
   {top4.map((player, index) => (
     <li

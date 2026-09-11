@@ -21,8 +21,10 @@ dispatch({type: "START_GAME", payload: category})
         <div>{quizState.questions.map((question) => (
 <button onClick={() => chooseCategoryAndReorderQuestions(question.category)} key={question.category}>{question.category}</button>
         )
-        )}</div>
-        <img src={Category} alt="Categorias do Quiz" />
+        )}
+        
+       </div>
+        {/*<img src={Category} alt="Categorias do Quiz" /> */} 
         </div>
   )
 }

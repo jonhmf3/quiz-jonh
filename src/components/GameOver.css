@@ -1,20 +1,59 @@
-#gameover{
+/* ==========================================================================
+   🎮 ESTILOS BASE - TELA DE FIM (Notebook e Mobile em Pé)
+   ========================================================================== */
+#gameover {
     text-align: center;
     max-width: 500px;
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
 }
 
 #gameover h2,
-#gameover p{
+#gameover p {
     margin-bottom: 1rem;
 }
 
-#gameover p{
+#gameover p {
     color: #8435de;
 }
 
-#gameover img{
-margin: 2rem auto;
-height: 200px;
+#gameover img {
+    margin: 2rem auto;
+    height: 200px;
+    object-fit: contain;
+}
+
+/* ==========================================================================
+   📱 AJUSTE EXCLUSIVO PARA CELULAR DEITADO (LANDSCAPE)
+   ========================================================================== */
+@media (max-width: 932px) and (orientation: landscape) {
+    #gameover {
+        max-width: 420px !important; /* Deixa o container mais compacto para caber na TV */
+        padding: 0.2rem 0.5rem !important;
+    }
+
+    /* Reduz as margens para economizar espaço vertical */
+    #gameover h2 {
+        font-size: 1.2rem !important; /* Título menor e elegante */
+        margin-bottom: 0.2rem !important;
+    }
+
+    #gameover p {
+        font-size: 0.75rem !important; /* Texto de pontuação menor */
+        margin-bottom: 0.2rem !important;
+    }
+
+    /* 🏆 REDUZ O TROFÉU NO CELULAR DEITADO: Evita empurrar o botão para fora */
+    #gameover img {
+        margin: 0.3rem auto !important; /* Diminui o espaçamento em volta do GIF */
+        height: 65px !important;        /* Encolhe o troféu para caber perfeitamente no vidro */
+    }
+
+    /* Ajuste do botão de reiniciar se ele estiver dentro do container */
+    #gameover button {
+        padding: 0.35rem 1rem !important;
+        font-size: 0.7rem !important;
+        height: 26px !important;
+    }
 }

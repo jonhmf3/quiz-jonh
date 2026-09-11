@@ -44,7 +44,7 @@ const Welcome = () => {
 
         <p>Clique no botão abaixo para começar:</p>
         <button onClick={handleStart}>Iniciar</button>
-        <img src={Quiz} alt="Inicio do quiz" />
+       {/*<img src={Quiz} alt="Inicio do quiz" /> */} 
     </div>
   )
 }
