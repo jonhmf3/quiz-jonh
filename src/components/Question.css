@@ -12,7 +12,7 @@
 
 #question p { margin-bottom: 1rem; }
 #question h2 { margin-bottom: 2rem; }
-#question button { border: 2px solid #fff; margin: 0.5rem; }
+#question button { border: 2px solid #fff; }
 
 /* Imagens das perguntas */
 .question-image {
@@ -211,20 +211,20 @@
 
     /* 📝 AJUSTE EXCLUSIVO DA PERGUNTA SEM IMAGEM (Ficar maior e imponente) */
     .main-screen #question:not(.question-with-image) h2 {
-        font-size: 13px !important; /* Aumentado de 11px para 13px para dar mais destaque */
+        font-size: 12px !important; /* Aumentado de 11px para 13px para dar mais destaque */
         line-height: 1.2 !important;
         margin: 0.4rem 0 !important; /* Dá mais espaço em volta do texto */
         text-align: center !important;
-        left: 0px !important;
+        left: 6px !important;
     }
 
     /* Pergunta com imagem mantém o tamanho pequeno de segurança */
     .main-screen #question.question-with-image h2 {
         font-size: 11px !important;
         line-height: 1.1 !important;
-        margin: 0.15rem 0 !important;
+        margin: 0.5rem  !important;
         text-align: center !important;
-        left: 0px !important;
+        left: 6px !important;
     }
 
     /* 🧱 LAYOUT 1: PERGUNTAS SEM IMAGEM (Preencher o espaço vazio e aumentar as caixas) */
@@ -350,31 +350,28 @@
         margin: 0 !important; 
         white-space: nowrap !important; 
     }
-}
 
-/* ==========================================================================
-   🔏 BLINDAGEM DA IMAGEM NO MOBILE DEITADO (Adicione no fim do Question.css)
-   ========================================================================== */
-@media (max-width: 932px) and (orientation: landscape) {
-    /* Força o container da esquerda a nunca passar da altura útil da TV */
+
+    /* Regras de contenção da imagem, consolidadas nesta media query. */
     .main-screen .image-question-left {
         width: 100% !important;
         height: 100% !important;
-        max-height: 32vh !important; /* 🎯 TRAVA A ALTURA DA FOTO NO CELULAR G42 */
+        max-height: 32vh !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         overflow: hidden !important;
     }
 
-    /* Obriga a foto (RBD, Pelé, etc) a encolher e caber nessa caixinha travada */
     .main-screen .image-question-left .question-image {
         width: auto !important;
         height: 100% !important;
         max-width: 100% !important;
         max-height: 100% !important;
-        object-fit: contain !important; /* Mantém a proporção da foto sem achatar */
+        object-fit: contain !important;
         margin: 0 !important;
     }
 }
+
+
 
