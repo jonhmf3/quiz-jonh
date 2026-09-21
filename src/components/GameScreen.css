@@ -186,7 +186,7 @@
     .player-panel .player-name { 
         font-size: 0.6rem; 
         margin: 0.15rem 0 0.25rem; 
-        line-height: 0; 
+        line-height: 0.1rem; 
     }
 
     .player-panel .player-stats { 
