@@ -164,7 +164,7 @@
     .player-panel {
         position: absolute; 
         left: 6.0%; 
-        top: 30%; 
+        top: 29%; 
         width: 15%; 
         height: 18%; 
         padding: 0.2rem;
@@ -178,26 +178,31 @@
         
         font-size: 0.5rem; 
         margin: 0; 
-        line-height: 1; 
+        line-height: 2; 
+       
+       
     }
 
     .player-panel .player-name { 
         font-size: 0.6rem; 
         margin: 0.15rem 0 0.25rem; 
-        line-height: 1; 
+        line-height: 0; 
     }
 
     .player-panel .player-stats { 
         
-        gap: 0.05rem; 
+        gap: 0.08rem; 
         margin-top: 0.05rem; 
     }
 
     .player-panel .player-stat { 
-        padding: 0.04rem 0.5rem; 
+        padding: 0.05rem 0.5rem; 
         font-size: 0.5rem; 
         line-height: 1; 
-        background: transparent; }
+        background: transparent; 
+       
+    
+    }
 
     .main-screen {
         position: absolute; 
@@ -640,7 +645,7 @@
     .player-panel {
         position: absolute !important;
         left: 6% !important;
-        top: 30.5% !important;
+        top: 29.5% ;
         width: 15% !important;
         height: 18% !important;
         background: transparent !important;
